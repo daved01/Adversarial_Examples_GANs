@@ -22,8 +22,8 @@ title: Adversarial Examples
 #email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   This site explores neural network safety and GANs.
-baseurl: "/startjekyll" # the subpath of your site, e.g. /blog
-url: "https://daved01.github.io/Adversarial_Examples_GANs" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  daved01
 
