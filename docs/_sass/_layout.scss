@@ -41,7 +41,7 @@ body {
     padding: 0px 15px;
     text-align: center;
     margin: 50px 0 0;
-    height: 15vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +65,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background: #fff;
+    background: $head;
     width: 100%;
     z-index: 2;
     border-bottom: 1px solid lighten($light, 30%);
@@ -107,10 +107,9 @@ body {
   }
   footer {
     text-align: center;
+    background-color: $footer;
     padding: 0px 15px;
+    text-align: center;
     margin: 50px 0 0;
-    height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 10vh;
   }
