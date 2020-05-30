@@ -59,11 +59,10 @@ def show_tensor_image(tensor):
     ## Swap axes to get the expected shape (224, 224, 3)
     image = np.swapaxes(image, 0, 2)
     
-    ## Rotate image and convert to image object
-    for i in range(3):
-        image = np.rot90(image)
+    ## Rotate and flip the image, then convert to image object
+    image = np.flipud(np.rot90(image))
     
-    image  = Image.fromarray(image)
+    image = Image.fromarray(image)
     
     ## Show image
     plt.imshow(image)
