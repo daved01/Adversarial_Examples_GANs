@@ -1,8 +1,8 @@
 ---
 
 layout: page
-title: Comparison
-permalink: /comparison/
+title: Results
+permalink: /results/
 ---
 
 
