@@ -25,7 +25,7 @@ In the data there are 452 out of 1000 distinct classes represented. The most fre
 The average confidence for a class is between $$99.99$$% (`barrel, cask`) and $$41.64$$% (`sandal`). In the plot the distribution of the average confidence can be seen. For over half of the examples the model has an average confidence of over $$60$$% and over $$\frac{2}{3}$$ of the examples have a confidence of over $$50$$%.
 
 
-![name of the image]({{site.baseurl}}/assets/Adversarial-Examples_Average-confidence-per-class.png){:class="img-responsive"}{:height="100%" width="100%"}
+![name of the image](/Adversarial_Examples_GANs/assets/Adversarial-Examples_Average-confidence-per-class.png){:class="img-responsive"}{:height="100%" width="100%"}
 
 
 The table shows the model's overall performance.
