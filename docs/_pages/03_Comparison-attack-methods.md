@@ -1,9 +1,4 @@
----
 
-layout: page
-title: Results
-permalink: /results/
----
 
 
 Comparing Adversarial Attack Methods

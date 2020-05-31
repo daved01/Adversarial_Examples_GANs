@@ -1,9 +1,3 @@
----
-
-layout: page
-title: Implementation
-permalink: /implementation/
----
 
 The project is implemented in different notebooks. The first notebook `00_Helper-Functions.ipynb` contains functions that are required by multiple methods. Copies of these functions are available as modules in `modules/helper.py` and `modules/dataset.py`. The PyTorch library is used for the implementations.
 
