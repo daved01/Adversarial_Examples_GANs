@@ -18,7 +18,7 @@ To assess the impact of adversarial examples, a dataset with a large number of c
 
 ### Predictions on the clean dataset
 
-The goal of adversarial examples is to fool the network into prediction a wrong class with high confidence. That's why we inspect the confidence of the network on the clean data first.
+The goal of adversarial examples is to fool the network into predicting a wrong class with high confidence. That's why we inspect the confidence of the network on the clean data first.
 
 In the data there are 452 out of 1000 distinct classes represented. The most frequent class is `ballplayer, baseball player` (class index 981) with 8 occurrences, followed by `racer, race car, racing car`, `stone wall` and `worm fence, snake fence, snake-rail fence, ...` with 7 each. Within these frequent classes the model's confidence is around $$58$$% with a standard deviation of around $$27$$. This is probably due to false predictions.
 
