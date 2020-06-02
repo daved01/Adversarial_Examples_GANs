@@ -1,8 +1,5 @@
 
 
-## Header
-
-
 An adversarial example is an input with slight modifications that misleads the machine learning model. In the context of this project we focus on images as inputs. However, adversarial examples exists for other domains as well [???]. The perturbations are designed to be so small that they are hardly perceptible by a human or may not even be representable in an 8bit image if the model excepts 32bit inputs. To craft malicious inputs, a clean input is used and modified in a way that the network’s loss o this prediction increases while keeping the confidence high. To do so access to the model’s parameters is no necessary. [2] show that networks can also be fooled when presented with malicious images through cameras. With the adoption of neural networks in autonomous vehicles for example the existence of adversarial examples can cause serious safety concerns and has to be addressed. Since the discovery of their existence in 2013 [3] research has focussed on understanding their origin and how to defend against them. As of this writing defending against adversarial examples remains difficult. The best mechanism is adversarial training [4].
 
 ### History
