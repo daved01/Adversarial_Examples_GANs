@@ -83,8 +83,11 @@ body {
         li.right {
           float: left;
           position: relative;
+          top: 0;
+          right: 0;
           background: #000000;
           a {
+            text-align: center;
             text-decoration: none;
             display: block;
             padding: 15px;
@@ -136,15 +139,15 @@ body {
   footer {  
     text-align: center;
     background-color: $footer;
-    padding: 10px 15px;
+    padding: 1px 15px;
     margin: 50px 0 0;
-    height: 20vh;
+    height: 11vh;
     font-size: medium;
-    p.top 
+    p.left 
     {
       text-align: left;
     }
-    p.bottom 
+    p.right 
     {
       text-align: center;
       font-size: small;

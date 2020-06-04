@@ -61,10 +61,66 @@ This method computes a step of gradient descent and moves one step of magnitude 
 
 
 #### Basic Iterative Method (BIM)
+An extension of the FGSM is BIM. It applies the FGSM multiple times to an image with step size $$\alpha$$ and clips the results. This ensures the result is in the $$\epsilon$$ neighbourhood of the original image $$X$$.
 
+The steps are:
+
+Initialize image with the clean image for iteration $$N=0$$
+
+\begin{equation}
+\tag{2.1}
+\widetilde{X}_{0} = X 
+\end{equation}
+
+Compute fast step:
+
+\begin{equation}
+\tag{2.2}
+X^{\prime}\_{1} = \widetilde{X}\_{0} + \alpha sign(\nabla\_{X} J(\widetilde{X}\_{0}, Y\_{true}))
+\end{equation}
+
+Clip pixel values:
+
+\begin{equation}
+\tag{2.3}
+\widetilde{X}\_{1} = min \( 255, X + \epsilon, max \( 0, X-\epsilon, X^{\prime}\_{1} \)\)
+\end{equation}
+
+Repeat for $$N=1$$
+
+For the hyperparameter [2] suggest:
+
+- $$\alpha$$ = 1
+- Number of iterations: $$min(4+\epsilon, 1.25 \cdot \epsilon)$$
 
 
 #### Iterative Least Likely Method (ILLM)
+The ILLM manipulates an image to make the model predict the class which has the lowest probability in the clean case.
+
+Similar to the BIM the steps are:
+
+Initialize image with the clean image for iteration $$N=0$$
+
+\begin{equation}
+\tag{3.1}
+\widetilde{X}_{0} = X 
+\end{equation}
+
+Compute fast step:
+
+\begin{equation}
+\tag{3.2}
+X^{\prime}\_{1} = \widetilde{X}\_{0} - \alpha sign(\nabla\_{X} J(\widetilde{X}\_{0}, Y\_{LL}))
+\end{equation}
+
+Clip pixel values:
+
+\begin{equation}
+\tag{3.3}
+\widetilde{X}\_{1} = min \( 255, X + \epsilon, max \( 0, X-\epsilon, X^{\prime}\_{1} \)\)
+\end{equation}
+
+Repeat for $$N=1$$
 
 
 
