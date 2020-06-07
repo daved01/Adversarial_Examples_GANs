@@ -15,7 +15,7 @@ body {
     line-height: 1.5;
   }
   h1 {
-    color: $main;
+    
     font-size: 2.5em;
     a,
     a:visited {
@@ -135,6 +135,88 @@ body {
         clear: both;
       }
     }
+
+  /* Navbar container */
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Muli', sans-serif;
+  }
+  
+  /* Links inside the navbar */
+  .navbar a {
+    float: left;
+    font-family: 'Muli', sans-serif;
+    font-size: medium;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* The dropdown container */
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  /* Dropdown button */
+  .dropdown .dropbtn { 
+    border: none;
+    outline: none;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Muli', sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    display: block;
+    padding: 15px;
+    line-height: 20px;
+    margin-bottom: -1px;
+    background-color: inherit;
+    
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red colour to navbar links on hover */
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    color: rgb(245, 11, 11) !important;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: #898989;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+
+
+
   }
   footer {  
     text-align: center;
@@ -143,6 +225,20 @@ body {
     margin: 50px 0 0;
     height: 11vh;
     font-size: medium;
+    color: #ffffff;
+    a,
+    a:visited {
+      color: $footer-link;
+      text-decoration: underline;
+      font-weight: bold;
+      &:hover
+       {
+          color: rgb(245, 11, 11) !important;
+          text-decoration: underline;
+      }
+
+    }
+
     p.left 
     {
       text-align: left;
@@ -151,9 +247,5 @@ body {
     {
       text-align: center;
       font-size: small;
-
     }
-
-
-
   }

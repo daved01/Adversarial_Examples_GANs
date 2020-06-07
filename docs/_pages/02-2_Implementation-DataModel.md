@@ -1,22 +1,9 @@
 ---
 
 layout: page
-title: Implementation
-permalink: /implementation/
+title: Data exploration
+permalink: /data_exploration/
 ---
-
-The project is implemented in different notebooks. The first notebook `00_Helper-Functions.ipynb` contains functions that are required by multiple methods. Copies of these functions are available as modules in `modules/helper.py` and `modules/dataset.py`. The PyTorch library is used for the implementations.
-
-
-### Model
-As model a pre-trained GoogLeNet Inception v1 model architecture is used. It is a 22 layer (when not counting pooling) deep neural net with inception blocks [???]. It can be directly imported from the PyTorch [library](https://pytorch.org/docs/stable/torchvision/models.html?highlight=googlenet#torchvision.models.googlenet). In the ImageNet competition of 2014 (ILSVRC 2014) this architecture has won the 1st price with an accuracy of $$93.3$$%.
-
-
-### Data
-To assess the impact of adversarial examples, a dataset with a large number of classes is preferred. The ImageNet dataset contains 1000 classes. However, instead of using the 100,000 images for testing, in this project a similar dataset is used from the *NIPS 2017: Non-targeted Adversarial Attack* challenge hosted on [Kaggle](https://www.kaggle.com/c/nips-2017-non-targeted-adversarial-attack). It consists of 1000 images and can be handled on a CPU. A Kaggle account is required to access it.
-
-
-### Predictions on the clean dataset
 
 The goal of adversarial examples is to fool the network into predicting a wrong class with high confidence. That's why we inspect the confidence of the network on the clean data first.
 

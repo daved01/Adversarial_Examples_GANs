@@ -2,13 +2,35 @@
 	<div class="container">
 		<nav>
 			<ul>
-				<li class="left"><a href="{{ site.baseurl | prepend: site.url | relative_url  }}">{{ site.title }}</a></li>
-{% for page in site.pages %} {% if page.title %}
-<li class="right"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
-{% endif %} {% endfor %}
+				<li class="left"><a href="{{ site.baseurl | prepend: site.url | relative_url  }}/">{{ site.title }}</a></li>
+				
+				<li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">Background</a></li>
+
+				<div class="dropdown">
+					<button class="dropbtn">Implementation 
+					  <i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">Overview</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-2_Implementation-DataModel.md %}">Data exploration</a> 
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-3_Implementation-FGSM.md %}">FGSM</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-4_Implementation-BIM.md %}">BIM</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-5_Implementation-ILLM.md %}">ILLM</a>
+					</div>
+				  </div>
+
+				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03_Results.md %}">Results</a></li>
+				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/04_References.md %}">References</a></li>
+				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/05_about.md %}">About</a></li>
+
+
 			</ul>
 			</li>
 			</ul>
+
+	
+
 		</nav>
+
 	</div>
 </aside>

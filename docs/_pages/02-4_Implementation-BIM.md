@@ -1,8 +1,8 @@
 ---
 
 layout: page
-title: References
-permalink: /references/
+title: Basic Iterative Method
+
 ---
 
 Nothing here yet...
