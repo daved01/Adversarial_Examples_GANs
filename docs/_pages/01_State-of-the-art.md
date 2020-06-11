@@ -37,89 +37,11 @@ Moreover, attacks can be **targeted** or **untargeted**. In the latter scenario 
 
 The following are the methods that we explore in this project.
 
-### FGSM
-The Fast Gradient Sign Method was introduced in 2015 by [4]. This non-iterative method generates examples in one step and leads to robust adversaries [2]. It computes a step of gradient descent and moves one step of magnitude $$\epsilon$$ into the direction of this gradient:
-
-\begin{equation}
-\tag{1.1}
-\widetilde{X} = X + \eta
-\end{equation}
-
-\begin{equation}
-\tag{1.2}
-\eta = \epsilon sign(\nabla_{x} J(\Theta, x, y))
-\end{equation}
-
-One downside of the FGSM is that the manipulated images are often perceptible for humans. This can be improved by using iterative methods.
-
-
-### Basic Iterative Method (BIM)
-An extension of the FGSM is BIM. It applies the FGSM multiple times to an image with step size $$\alpha$$ and clips the resulting pixel values to ensure that they stay similar to the original ones [2].
-
-Iterative methods like the BIM are slower but generally produce more subtle perturbation to images.
-
-The steps are:
-
-Initialize with the clean image $$X$$ for iteration $$N=0$$
-
-\begin{equation}
-\tag{2.1}
-\widetilde{X}_{0} = X 
-\end{equation}
-
-Compute fast step:
-
-\begin{equation}
-\tag{2.2}
-X^{\prime}\_{1} = \widetilde{X}\_{0} + \alpha sign(\nabla\_{X} J(\widetilde{X}\_{0}, Y\_{true}))
-\end{equation}
-
-Clip pixel values:
-
-\begin{equation}
-\tag{2.3}
-\widetilde{X}\_{1} = min \( 255, X + \epsilon, max \( 0, X-\epsilon, X^{\prime}\_{1} \)\)
-\end{equation}
-
-Repeat for $$N=1$$
-
-For the hyperparameter [2] suggest:
-
-- $$\alpha$$ = 1
-- Number of iterations: $$min(4+\epsilon, 1.25 \cdot \epsilon)$$
-
-
-### Iterative Least Likely Method (ILLM)
-Both of the previous methods only try (they don’t guarantee a false classification) to change the prediction to a different class. When attacking a classifier with a lot of similar classes this can lead to uninteresting results. For example, one dog breed would be classified as another dog breed but not as a cat. The *Iterative Least Likely Class Method* (ILLM) looks at the prediction on a clean image and modifies it to output the least likely class [2].
-
-Similar to the BIM the steps are:
-
-Initialize with the clean image for iteration $$N=0$$
-
-\begin{equation}
-\tag{3.1}
-\widetilde{X}_{0} = X 
-\end{equation}
-
-Compute fast step:
-
-\begin{equation}
-\tag{3.2}
-X^{\prime}\_{1} = \widetilde{X}\_{0} - \alpha sign(\nabla\_{X} J(\widetilde{X}\_{0}, Y\_{LL}))
-\end{equation}
-
-Clip pixel values:
-
-\begin{equation}
-\tag{3.3}
-\widetilde{X}\_{1} = min \( 255, X + \epsilon, max \( 0, X-\epsilon, X^{\prime}\_{1} \)\)
-\end{equation}
-
-Repeat for $$N=1$$
-
-
-### Deep Fool
-[8] Deepfool present an algorithm to …
+- Fast Gradient Sign Method (FGSM) by [4]
+- Basic Iterative Method (BIM) by [2]
+- Iterative Least Likely Class Method (ILLM) by [2]
+- Deep Fool [8]
+- Targeted [Papernot et al.]
 
 
 ### Targeted Papernot et al

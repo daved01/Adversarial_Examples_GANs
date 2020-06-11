@@ -13,7 +13,7 @@ The available notebooks are:
 - [`02_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Basic-Iterative-Method.ipynb)
 - [`03_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Iterative-Least-Likely-Class-Method.ipynb)
 
-To follow along with the implementations we recommend to clone the [repository](https://github.com/daved01/Adversarial_Examples)
+To follow along with the implementations we recommend to clone the [repository](https://github.com/daved01/Adversarial_Examples) and download the data from Kaggle.
 
 
 ## Model
@@ -23,4 +23,20 @@ As model a pre-trained GoogLeNet Inception v1 model architecture is used. It is 
 ### Data
 To assess the impact of adversarial examples, a dataset with a large number of classes is preferred. The ImageNet dataset contains 1000 classes. However, instead of using the 100,000 images for testing, in this project a similar dataset is used from the *NIPS 2017: Non-targeted Adversarial Attack* challenge hosted on [Kaggle](https://www.kaggle.com/c/nips-2017-non-targeted-adversarial-attack). It consists of 1000 images and can be handled on a CPU. A Kaggle account is required to access it.
 
+As required by the model, the data is preprocessed:
 
+{% highlight python linenos %}
+mean = [0.485, 0.456, 0.406]
+std = [0.229, 0.224, 0.225]   
+
+preprocess = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=mean, std=std)
+    ])
+
+data_loader = torch.utils.data.DataLoader(
+    ImageNetSubset("data/ImageNet_subset/dev_dataset.csv", 
+    "data/ImageNet_subset//images/", transform=preprocess))
+{% endhighlight %}
