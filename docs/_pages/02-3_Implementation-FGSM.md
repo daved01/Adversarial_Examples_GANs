@@ -5,7 +5,7 @@ title: Fast Gradient Sign Method
 
 ---
 
-The Fast Gradient Sign Method was introduced in 2015 by [4]. This non-iterative method generates examples in one step and leads to robust adversaries [2]. It computes a step of gradient descent and moves one step of magnitude $$\epsilon$$ into the direction of this gradient:
+The Fast Gradient Sign Method was introduced in 2015 [4]. This non-iterative method generates adversarial examples in one step and leads to robust adversaries [2]. It computes a step of gradient descent and moves one step of magnitude $$\epsilon$$ into the direction of this gradient:
 
 \begin{equation}
 \tag{1.1}
@@ -83,7 +83,7 @@ In the following section we investigate how the FGSM attack performs.
 
 ## Results
 
-The following is an example of the original image, the generated perturbance and the resulting adversarial image at an epsilon of $$\frac{4}{255}$$. Subjectively, at that epsilon the attack remains only slightly perceptible. For a greater epsilon the attack become much more noticeable. The image appears increasingly noisy.
+The following is an example of the original image, the generated perturbance and the resulting adversarial image at an epsilon of $$\frac{4}{255}$$. Subjectively, at that epsilon, the attack remains only slightly perceptible. For a greater epsilon, the attack becomes much more noticeable with the image appearing increasingly noisy.
 
 ![FGSM Attack](/Adversarial_Examples_GANs/assets/Adversarial_Examples-FGSM-Attack.png){:class="img-responsive"}{:height="100%" width="100%"}
 
