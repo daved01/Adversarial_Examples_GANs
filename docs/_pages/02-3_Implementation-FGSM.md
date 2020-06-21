@@ -5,7 +5,7 @@ title: Fast Gradient Sign Method
 
 ---
 
-The Fast Gradient Sign Method was introduced in 2015 by [4]. This non-iterative method generates examples in one step and leads to robust adversaries [2]. It computes a step of gradient descent and moves one step of magnitude $$\epsilon$$ into the direction of this gradient:
+The earliest and simplest method to generate adversarial examples is the Fast Gradient Sign Method (FGSM) as introduced in [Explaining and Harnessing Adversarial Examples](http://arxiv.org/abs/1607.02533) by Goodfellow, I. et al. This non-iterative method generates examples in one step and leads to robust adversaries. It computes a step of gradient descent and moves one step of magnitude $$\epsilon$$ into the direction of this gradient:
 
 \begin{equation}
 \tag{1.1}
@@ -17,7 +17,10 @@ The Fast Gradient Sign Method was introduced in 2015 by [4]. This non-iterative 
 \eta = \epsilon sign(\nabla_{x} J(\Theta, x, y))
 \end{equation}
 
-One downside of the FGSM is that the manipulated images are often perceptible for humans. This can be improved by using iterative methods.
+One downside of the FGSM is that the manipulated images are often perceptible for humans. 
++ Add perception thing
++ Add explanation or example or both
+This can be improved by using iterative methods.
 
 The notebook is available <a id="raw-url" href="https://raw.githubusercontent.com/daved01/Adversarial_Examples/master/01_Fast-Gradient-Sign-Method.ipynb" download>here</a>.
 
@@ -83,17 +86,29 @@ In the following section we investigate how the FGSM attack performs.
 
 ## Results
 
-The following is an example of the original image, the generated perturbance and the resulting adversarial image at an epsilon of $$\frac{4}{255}$$. Subjectively, at that epsilon the attack remains only slightly perceptible. For a greater epsilon the attack become much more noticeable. The image appears increasingly noisy.
+The following is an example of the original image, the generated perturbance and the resulting adversarial image at an epsilon of $$\frac{6}{255}$$.
 
-![FGSM Attack](/Adversarial_Examples_GANs/assets/Adversarial_Examples-FGSM-Attack.png){:class="img-responsive"}{:height="100%" width="100%"}
+![FGSM Attack](/Adversarial_Examples_GANs/assets/Sample_766.png){:class="img-responsive"}{:height="100%" width="100%"}
 
-In the following we are going to analyze the effect of different attack strengths on different images. We evaluate the following hypothesis:
+The adversarial image appears slightly more blurry than the original one, like for example taken at poor a resolution. Without the reference image however, it can be hard to tell that it has been modified. With increasing attack strength this becomes more and more obvious as can be seen in the following images:
+
+![FGSM Attack](/Adversarial_Examples_GANs/assets/Sample_766_series.png){:class="img-responsive"}{:height="100%" width="100%"}
+
+Here the values for epsilon are: 0, 4/255, 8/255, 12/255 and 6/255. The image appears more and more noisy. We later show methods which produce cleaner looking adversaries.
+
+With the example above there is actually a problem.
+
+![FGSM Attack](/Adversarial_Examples_GANs/assets/Confidence_Levels-Sample766.png){:class="img-responsive"}{:height="100%" width="100%"}
+
+As you can see, the confidence drops sharply at the beginning and stays below 0.4. Additionally, the attack is able to change the class at epsilon 4 at very low confidence but it changes right back to the correct class for increasing attack intensity.
+
+Note that this image has a very high initial confidence of 99.99%. This leads us to the first hypothesis:
 
 **Hypothesis 1:** Images with a high initial confidence are harder to manipulate.
 
 ### All Images
 
-We consider a plot of accuracy and confidence over the attack strength epsilon. For this hypothesis to be true we would observe a sharp drop in accuracy with increasing attack strength. The higher the initial confidence is, the smaller should the slope of the accuracy be. That is it is harder to attack the network at the same epsilon. At the same time the confidence should drop slightly since more and more robust features are altered.
+We consider a plot of accuracy and confidence over the attack strength epsilon. For this hypothesis to be true we would observe a sharp drop in accuracy with increasing attack strength. The higher the initial confidence is, the smaller the slope of the accuracy should be. It is harder to attack the network at the same epsilon. At the same time the confidence should drop slightly since more and more robust features are altered.
 
 Recall from the section [Data Exploration]({{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-2_Implementation-DataModel.md %}) how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in the interval of 5% points.
 
