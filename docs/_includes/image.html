@@ -1,3 +1,4 @@
-<img src="{{ site.baseurl | prepend: site.url | relative_url  }}/assets/{{ include.file }}" width="500" height="600" alt="{{ include.description }}">
-<span class="caption">{{ include.description }}</span>
-
+<figure class="image">
+    <img src="{{ site.baseurl | prepend: site.url | relative_url  }}/assets/{{ include.file }}" alt="{{ include.description }}" width="790">
+    <figcaption>{{ include.description }}</figcaption>
+  </figure>
