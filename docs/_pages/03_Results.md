@@ -8,15 +8,15 @@ permalink: /results/
 In this section we discuss the performance of the different attacks. First we briefly look at the properties of the clean data. Then we attack the model with different models and analyze the success.
 
 ## Data Exploration
-The goal of adversarial examples is to fool the network into predicting a wrong class with high confidence. That's why we inspect the confidence of the network on the clean data first.
+Considering that the goal of adversarial examples is to fool the network into predicting a wrong class with high confidence, a good place to start start is to inspect the model's performance without any adversarial perturbation.
 
-In the data there are 452 out of 1000 distinct classes represented. The most frequent class is `ballplayer, baseball player` (class index 981) with 8 occurrences, followed by `racer, race car, racing car`, `stone wall` and `worm fence, snake fence, snake-rail fence, ...` with 7 each. Within these frequent classes the model's confidence is around $$58$$% with a standard deviation of around $$27$$. This is probably due to false predictions. Figure 1 shows how the the top 5 confidence is distributed for different initial confidences.
+In the data there are 452 out of 1000 distinct classes represented. The most frequent class is `ballplayer, baseball player` (class index 981) with 8 occurrences, followed by `racer, race car, racing car`, `stone wall` and `worm fence, snake fence, snake-rail fence, ...` with 7 each. Within these frequent classes, the model's confidence is around $$58$$% with a standard deviation of around $$27$$. This large range in confidence is likely due to false predictions. Figure 1 shows how the the top 5 confidence is distributed for different confidences in their top predictions.
 
 {% include image.html file="Confidence_Distributions.png" description="Figure 1: Top 5 confidences from 100% to 60% in 5% steps." %}
 
-The average confidence for a class is between $$99.99$$% (`barrel, cask`) and $$41.64$$% (`sandal`). The distribution of the average confidence is shown in figure 2. For over half of the examples the model has an average confidence of over $$60$$% and over $$\frac{2}{3}$$ of the examples have a confidence of over $$50$$%.
+The average confidence for a class is between $$99.99$$% (`barrel, cask`) and $$41.64$$% (`sandal`). The distribution of the average confidence is shown in figure 2. For over half of the examples, the model has an average confidence of over $$60$$% and over $$\frac{2}{3}$$ of the examples have a confidence of over $$50$$%.
 
-{% include image.html file="Data_Exploration-Average-confidence_per_class.png" description="Figure 2: Average confidence per class in descending order. The majority of classes consists of one sample only. The highest number of samples per class is 8." %}
+{% include image.html file="Data_Exploration-Average-confidence_per_class.png" description="Figure 2: Average confidence per class in descending order. The majority of classes consist of only one sample. The highest number of samples per class is 8." %}
 
 
 The table shows the model's overall performance.
