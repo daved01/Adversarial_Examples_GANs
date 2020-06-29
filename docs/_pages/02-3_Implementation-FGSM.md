@@ -42,11 +42,14 @@ data_loader = torch.utils.data.DataLoader(
 The attack is implemented as:
 
 {% highlight python linenos %}
-'''
+def apply_fgsm(image, mean, std, epsilon, grad_x):
+    '''
     Generates adversarial image from the input image using the Fast Gradient Sign Method (FGSM).
     
     Inputs:
     image       -- Image data as tensor
+    mean        -- Means from image standardization
+    std         -- Standard deviation from image standardization
     epsilon     -- Hyperparameter
     grad_x      -- Gradient of the cost with respect to x
     
@@ -54,13 +57,13 @@ The attack is implemented as:
     image_tilde -- Adversarial image as tensor
     '''
     
-    ## Calculated normalized epsilon and convert it to a tensor
+    ## Calculated normalized epsilon and convert it to a tensor   
     eps_normed = [epsilon/s for s in std]
     eps_normed = torch.tensor(eps_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
     
     ## Compute eta part
     eta = eps_normed * grad_x.sign()
-    
+
     ## Apply perturbation
     image_tilde = image + eta    
     
@@ -77,6 +80,8 @@ The attack is implemented as:
     ## Clip image so after denormalization and destandardization, the range is [0, 255]
     image_tilde = torch.max(image_tilde, zero_normed)
     image_tilde = torch.min(image_tilde, max_normed)
+    
+    return image_tilde
 {% endhighlight %}
 
 In the following section we investigate how the FGSM attack performs.

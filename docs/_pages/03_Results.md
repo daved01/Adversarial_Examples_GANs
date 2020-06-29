@@ -5,14 +5,12 @@ title: Results
 permalink: /results/
 ---
 
-
 In this section we discuss the performance of the different attacks. First we briefly look at the properties of the clean data. Then we attack the model with different models and analyze the success.
 
 ## Data Exploration
 The goal of adversarial examples is to fool the network into predicting a wrong class with high confidence. That's why we inspect the confidence of the network on the clean data first.
 
 In the data there are 452 out of 1000 distinct classes represented. The most frequent class is `ballplayer, baseball player` (class index 981) with 8 occurrences, followed by `racer, race car, racing car`, `stone wall` and `worm fence, snake fence, snake-rail fence, ...` with 7 each. Within these frequent classes the model's confidence is around $$58$$% with a standard deviation of around $$27$$. This is probably due to false predictions. Figure 1 shows how the the top 5 confidence is distributed for different initial confidences.
-
 
 {% include image.html file="Confidence_Distributions.png" description="Figure 1: Top 5 confidences from 100% to 60% in 5% steps." %}
 
@@ -70,6 +68,7 @@ The previous examples showed images with high initial confidence. It is not poss
 
 {% include image.html file="Individual_Images-Sample_258.png" description="Figure 8:  Example for low initial confidence and greater adversarial confidence. Note how a small perturbation achieves the best results here. In this particular attack the perturbation is so slight that it is not representable in an 8bit image."%}
 
+After analyzing the FGSM we now turn to a method derived from it, the basic iterative method BIM.
 
 ## BIM
 
