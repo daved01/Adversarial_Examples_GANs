@@ -32,11 +32,11 @@ Top 1 means that the predicted class is the correct class. Top 5 means that the 
 
 ## Fast Gradient Sign Method
 
-The following is an example of the original image, the generated perturbance and the resulting adversarial image using the Fast Gradient Sign Method:
+The following is an example of the original image, the generated perturbance, and the resulting adversarial image using the Fast Gradient Sign Method:
 
 {% include image.html file="Sample_766_pair.png" description="Figure 3: Original image, the with the FGSM generated perturbance and resulting adversarial image. This attack decreases the network’s confidence from almost 100% down to 14%" %}
 
-The adversarial image appears slightly more blurry than the original one, like for example taken at poor a resolution. Without the reference image however, it can be hard to tell that it has been modified. With increasing attack strength this becomes more and more obvious as can be seen in the following images:
+The adversarial image appears slightly blurrier than the original one, like for example taken at poorer resolution or with a worse camera. Without the reference image however, it can be difficult to tell that it has been modified. With increasing attack strength, this becomes noticeable as can be seen in the following images:
 
 {% include image.html file="Sample_766_series.png" description="Figure 4: Original image and a series of adversarial images with increasing attack intensity. The values for epsilon are: 0, 4/255, 8/255, 12/255 and 16/255. Subjectively, at around 12/255 the attack becomes noticeable." %}
 
