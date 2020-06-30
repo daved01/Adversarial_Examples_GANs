@@ -52,13 +52,13 @@ We consider a plot of accuracy and confidence over the attack strength epsilon. 
 
 Recall from the section Data Exploration how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in the interval of 5% points.
 
-{% include image.html file="Accuracies_Confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Only if the prediction on the clean image is correct an adversary is generated." %}
+{% include image.html file="Accuracies_Confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Examples that are labelled incorrectly by the model without adversarial perturbations are excluded." %}
 
 
 ### Individual Images
-We find some exceptions. Figure 6 shows two samples where the FGSM is not able to change the class. Moreover, also the lowest confidence remains fairly large. After an initial sudden decrease in confidence, it increases again. In the first example even almost up to clean levels.
+In theory, increasing the size of the perturbation should lower the confidence of the model in predicting the correct class. We, however, have found some exceptions. Figure 6 shows two samples where the FGSM is not able to change the class while the model maintains a relatively high confidence. Interestingly, the confidence in the original correct class first quickly drops then increases again with increasing adversarial perturbance. In the first example, the model's confidence even reaches back to clean levels at the highest levels of perturbance.
 
-{% include image.html file="Individual_Images-Same_Class.png" description="Figure 6: Two examples for class-invariance under FGSM. On the left is the clean example. Next to it the confidence and if class is correct or not over multiple epsilons. The third plot shows the top 5 confidence for the clean case, whereas the rightmost plot shows the top 5 confidence for the worst case. The confidence increases again after an initial dip." %}
+{% include image.html file="Individual_Images-Same_Class.png" description="Figure 6: Two examples for class-invariance under FGSM. On the left is the clean example. Next to it the confidence and if class is correct or not over multiple epsilons. The third plot shows the top 5 confidence for the clean case, whereas the rightmost plot shows the top 5 confidence when the top class is at its lowest confidence. The confidence increases again after an initial dip." %}
 
 A smaller increase in confidence after a dip can also be seen in figure 7. Despite the high initial confidence the adversary is able to change the class here. However, with a stronger attack the model predicts the correct class again. We found this behaviour of a bounce back to the correct class frequently for high initial confidences. Around the epsilon where the class changes we found that the highest and second highest confidences are very similar, whereas the gap to the third highest remains. The decrease in prediction confidence causes the second highest confidence to grow over proportionally which leads to the swap at the lowest point.
 
