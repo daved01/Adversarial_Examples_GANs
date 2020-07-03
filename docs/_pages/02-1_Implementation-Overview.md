@@ -13,6 +13,16 @@ The available notebooks are:
 - [`02_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Basic-Iterative-Method.ipynb)
 - [`03_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Iterative-Least-Likely-Class-Method.ipynb)
 
+Most functions are implemented in modules which are imported into the notebooks. The modules are:
+
+- `dataset` - Datset functions
+- `helper` - Contains functions which are used by all attack methods
+- `fgsm` - FGSM attack specific functions
+- `bim`- BIM attack specific functions
+- `illm`- ILLM attack specific functions
+
+The functions are explained in the following sections.
+
 To follow along with the implementations we recommend to clone the [repository](https://github.com/daved01/Adversarial_Examples) and download the data from Kaggle.
 
 
@@ -20,7 +30,7 @@ To follow along with the implementations we recommend to clone the [repository](
 As model a pre-trained GoogLeNet Inception v1 model architecture is used. It is a 22 layer (when not counting pooling) deep neural net with inception blocks [???]. It can be directly imported from the PyTorch [library](https://pytorch.org/docs/stable/torchvision/models.html?highlight=googlenet#torchvision.models.googlenet). In the ImageNet competition of 2014 (ILSVRC 2014) this architecture has won the 1st price with an accuracy of $$93.3$$%.
 
 
-### Data
+## Data
 To assess the impact of adversarial examples, a dataset with a large number of classes is preferred. The ImageNet dataset contains 1000 classes. However, instead of using the 100,000 images for testing, in this project a similar dataset is used from the *NIPS 2017: Non-targeted Adversarial Attack* challenge hosted on [Kaggle](https://www.kaggle.com/c/nips-2017-non-targeted-adversarial-attack). It consists of 1000 images and can be handled on a CPU. A Kaggle account is required to access it.
 
 As required by the model, the data is preprocessed:
@@ -39,4 +49,67 @@ preprocess = transforms.Compose([
 data_loader = torch.utils.data.DataLoader(
     ImageNetSubset("data/ImageNet_subset/dev_dataset.csv", 
     "data/ImageNet_subset//images/", transform=preprocess))
+{% endhighlight %}
+
+
+## Module Helper
+
+The module `helper` contains functions which are not attack method specific.
+
+`idx_to_name(idx)`
+{% highlight python%}
+
+Converts the output class index from the googleNet to the respective name.
+Input:
+idx  -- Class index as integer
+
+Returns:
+name -- Class names corresponding to idx as string
+
+{% endhighlight %}
+
+
+`def show_tensor_image(tensor)`
+{% highlight python%}
+De-normalizes an image as a tensor and converts it back into an 8bit image object.
+
+Inputs:
+tensor -- PyTorch tensor of shape (1, 3, 224, 224)
+    
+Returns:
+image  -- De-normalized image object
+{% endhighlight %}
+
+`def predict(model, image, target_label, return_grad=False)`
+{% highlight python%}
+Predicts the class of the given image and compares the prediction with the provided label.
+
+Inputs:
+model             -- net
+image             -- Input image as tensor of shape (1, 3, 224, 224)
+target_label      -- Target label as tensor of shape (1)
+return_grad       -- Returns gradient if set True
+    
+Returns:
+predicted_classes -- Numpy array of top 5 predicted class indices
+confidences       -- Numpy array of top 5 confidences in descending order
+gradient          -- None if return_grad=False. Otherwise the gradient from the prediction
+                     as a tensor of shape ().
+{% endhighlight %}
+
+`def summarize_attack(image_clean, image_adv, conf_clean, conf_adv, label_clean, label_adv, label_target, idx, folder=None)`
+{% highlight python%}
+Summarizes attack by printing info and displaying the image along with the adversary and the isolated
+perturbance. Saves image to the folder.
+    
+Inputs:
+image_clean     -- Clean image as tensor of shape (1, 1, 28, 28)
+image_adv       -- Adversarial image as tensor of shape (1, 1, 28, 28)
+conf_clean      -- Confidence for the clean image
+conf_adv        -- Confidence for the adversarial image
+label_clean     -- Predicted label from the clean image
+label_adv       -- Predicted label from the adversarial image
+label_target    -- Target label as tensor of shape (1)
+idx             -- Sample index used for filename of plot export
+folder          -- If not None folder to which the image is saved.
 {% endhighlight %}

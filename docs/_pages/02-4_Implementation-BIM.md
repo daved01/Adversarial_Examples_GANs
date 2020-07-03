@@ -5,7 +5,6 @@ title: Basic Iterative Method
 
 ---
 
-
 The Basic Iterative Method (BIM) is a simple extension of the Fast Gradient Sign Method, where instead of have one large step, it applies the FGSM multiple times to an image with step size $$\alpha$$. The resulting adversarial example can then be clipped to limit the maximum perturbance for each pixel [Adversarial Examples in the Physical World]((http://arxiv.org/abs/1607.02533)).
 
 Iterative methods like the BIM are slower, but generally produce more subtle perturbation to images.
@@ -37,83 +36,109 @@ Repeat for $$N=1$$
 
 For the hyperparameter the authors suggest:
 
-- $$\alpha$$ = 1
-- Number of iterations: $$min(4+\epsilon, 1.25 \cdot \epsilon)$$
+- For alpha: $$\alpha = \frac{1}{255}$$
+- Number of iterations: $$min(4+\frac{\epsilon}{\alpha}, 1.25 \cdot \frac{\epsilon}{\alpha} )$$
 
+
+## Functions
 
 We implement BIM as follows:
 
-{% highlight python linenos %}
-def apply_BIM(image, label, alpha, epsilon, num_iterations=2):
+{% highlight python %}
+def apply_BIM(model, mean, std, image, label, alpha, epsilon, num_iterations=10):
     '''
     Applies given number of steps of the Basic Iterative Method (BIM) attack on the input image.
     
     Inputs:
-    model          -- Model under attack
+    model          -- Network under attack
     image          -- Image data as tensor of shape (1, 3, 224, 224)
-    label          -- Label from image as tensor of shape (1)
-    alpha          -- Hyperparameter for iterative step
-    epsilon        -- Hyperparameter for sign method
-    num_iterations -- Number of iterations to perform
+    mean           -- Mean from data preparation
+    std            -- Standard deviation from data preparation
+    label          -- Label from image as numpy array
+    alpha          -- Hyperparameter for iterative step as absolute value. Has to be scaled to alpha/255.
+    epsilon        -- Hyperparameter for sign method. Has to be scaled to epsilon/255.
+    num_iterations -- Number of iterations to perform. Default is 10. It is recommended to use the heuristic from the
+                      paper "Adversarial Examples in the Pysical World" to determine the number of iterations.
     
     Returns:
     image_adver    -- Adversarial image as tensor
     '''
-
-    ## Check input image and label shapes
-    assert(image.shape == torch.Size([1, 3, 224, 224]))
-    assert(label.shape == torch.Size([1]))
-    
-    ## Initialize adversarial image as image according to equation (3)
-    image_adver = image.clone()    
-    
-    # Calculate normalized range [0, 1] and convert them to tensors
-    zero_normed = [-m/s for m,s in zip(mean, std)]
-    zero_normed = torch.tensor(zero_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
-    
-    max_normed = [(1-m)/s for m,s in zip(mean,std)]
-    max_normed = torch.tensor(max_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
-    
-    # Calculated normalized epsilon and convert it to a tensor
-    eps_normed = [epsilon/s for s in std]
-    eps_normed = torch.tensor(eps_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
-    
-    # Calculate the maximum change in pixel value using epsilon to be later used in clip function
-    image_plus = image + eps_normed
-    image_minus = image - eps_normed
-    #assert(torch.equal(image_plus, image) == False)
-    
-    for i in range(num_iterations):
-        
-        ## Make a copy and detach so the computation graph can be constructed
-        image_adver = image_adver.clone().detach()
-        image_adver.requires_grad=True
-        
-        ## Compute cost with example image_adversarial        
-        pred = model(image_adver)        
-        loss = F.nll_loss(pred, label)        
-        model.zero_grad()        
-        loss.backward()        
-        grad_x = image_adver.grad.data       
-        
-        ## Check if gradient exists
-        assert(image_adver.grad is not None)
-               
-        ## Compute X_prime according to equation (1)
-        image_prime = image_adver + alpha * grad_x.detach().sign()
-        assert(torch.equal(image_prime, image_adver) == False)
-    
-        
-        # Equation 1.2
-        third_part_1 = torch.max(image_minus, image_prime)
-        third_part = torch.max(zero_normed, third_part_1)
-              
-        # Equation (2)
-        image_adver = torch.min(image_plus, third_part)                 
-        image_adver = torch.min(max_normed, image_adver)                        
-
-    
-    return image_adver
+{% endhighlight %}
 
 
+In addition we use the following function:
+
+
+{% highlight python  %}
+def compute_all_bim(model, data_loader, predict, mean, std, epsilons, alpha, filename_ext):
+    '''
+    Computes top 1, top 5 accuracy and confidence for all samples using BIM 
+    in data_loader for each epsilon.
+    Does not filter false initial predictions.
+    Saves the results as csv file to: ./results/BIM/BIM-all_samples.csv
+
+    Inputs:
+    model       -- Network under attack
+    data_loader -- Pytorch data loader object
+    predict     -- Predict function from module helper
+    mean        -- Mean from data preparation
+    std         -- Standard deviation from data preparation
+    epsilons    -- List of epsilons for FGSM attack
+    alpha       -- Hyperparameter for BIM. Must be provided as a scaled number alpha/255
+
+    Returns:
+    top1        -- Top 1 accuracy
+    top5        -- Top 5 accuracy
+    conf        -- Confidence
+    ''' 
+
+{% endhighlight %}
+
+
+{% highlight python %}
+def BIM_attack_with_selected_samples(min_confidence, max_confidence, data_loader, predict, model, mean, std, epsilons, alpha):
+    '''
+    Attacks the model with images from the dataset on which the model achieves clean predictions with
+    confidences in the provided interval [min_confidence, max_confidence]. Only if the original
+    prediction is correct an adversary is generated.
+    
+    Returns an average of the top1, top5 and confidence for all these samples.
+    
+    The number of iterations for the BIM attack is calculated by this function according to the heuristic
+    from the authors of "Adversarial Examples in the Physical World".
+    
+    Inputs:
+    min_confidence -- Minimum confidence to consider
+    max_confidence -- Maximum confidence to consider
+    model          -- Network under attack
+    mean           -- Mean from data preparation
+    std            -- Standard deviation from data preparation
+    epsilons       -- Hyperparameter 1 for attack. Provide scaled as epsilon/255 
+    alpha          -- Hyperparameter 2 for attack. Provide scaled as alpha/255
+    
+    Returns:
+    result         -- Dataframe with top1, top5 and confidence for prediction
+    '''
+    
+{% endhighlight %}
+
+
+{% highlight python %}
+def compare_examples_bim(data_loader, mean, std, model, predict, summarize_attack, alpha, epsilon, idx, folder=None):
+    '''
+    Generates an example using BIM. Prints infos and plots clean and adversarial image side-by-side.
+    
+    Inputs:
+    data_loader      -- Pytorch data loader object
+    mean             -- Mean from data preparation
+    std              -- Standard deviation from data preparation
+    model            -- Network under attack
+    predict          -- Predict function from module helper
+    summarize_attack -- Function from module helper to describe attack
+    alpha            -- Hyperparameter for BIM
+    epsilon          -- Hyperparameter for BIM
+    idx              -- Index of sample   
+    folder           -- If given image will be saved to this folder
+    '''
+    
 {% endhighlight %}
