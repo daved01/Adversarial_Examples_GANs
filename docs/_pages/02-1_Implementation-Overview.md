@@ -9,9 +9,10 @@ The implementation is structured by the attack method. Each is implemented in a 
 
 The available notebooks are:
 - [`00_Helper-Functions.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/00_Helper-Functions.ipynb)
-- [`01_Fast-Gradient-Sign-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/01_Fast-Gradient-Sign-Method.ipynb)
-- [`02_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Basic-Iterative-Method.ipynb)
-- [`03_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Iterative-Least-Likely-Class-Method.ipynb)
+- [`01_Data_Exploration.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/01_Data_Exploration.ipynb)
+- [`02_Fast-Gradient-Sign-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Gradient-Sign-Method.ipynb)
+- [`03_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Fast-Basic-Iterative-Method.ipynb)
+- [`04_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/04_Iterative-Least-Likely-Class-Method.ipynb)
 
 Most functions are implemented in modules which are imported into the notebooks. The modules are:
 
@@ -35,7 +36,7 @@ To assess the impact of adversarial examples, a dataset with a large number of c
 
 As required by the model, the data is preprocessed:
 
-{% highlight python linenos %}
+{% highlight python %}
 mean = [0.485, 0.456, 0.406]
 std = [0.229, 0.224, 0.225]   
 
@@ -56,60 +57,79 @@ data_loader = torch.utils.data.DataLoader(
 
 The module `helper` contains functions which are not attack method specific.
 
-`idx_to_name(idx)`
+
 {% highlight python%}
-
-Converts the output class index from the googleNet to the respective name.
-Input:
-idx  -- Class index as integer
-
-Returns:
-name -- Class names corresponding to idx as string
-
+def idx_to_name(class_index):
+    '''
+    Converts the output class index from the googleNet to the respective name.
+    
+    Input:
+    class_index  -- Class index as integer
+    
+    Returns:
+    name         -- Class names corresponding to idx as string
+    '''
+    
+    # Load dictionary from file    
+    names = pd.read_csv("./data/ImageNet_subset/categories.csv")
+    
+    # Retrieve class name for idx
+    name = names.iloc[class_index]["CategoryName"]
+    
+    return name
 {% endhighlight %}
 
 
-`def show_tensor_image(tensor)`
 {% highlight python%}
-De-normalizes an image as a tensor and converts it back into an 8bit image object.
-
-Inputs:
-tensor -- PyTorch tensor of shape (1, 3, 224, 224)
+def show_tensor_image(tensor):
+    '''
+    De-normalizes an image as a tensor and converts it back into an 8bit image object.
     
-Returns:
-image  -- De-normalized image object
+    Inputs:
+    tensor -- PyTorch tensor of shape (1, 3, 224, 224)
+    
+    Returns:
+    image  -- De-normalized image object
+    '''
 {% endhighlight %}
 
-`def predict(model, image, target_label, return_grad=False)`
-{% highlight python%}
-Predicts the class of the given image and compares the prediction with the provided label.
 
-Inputs:
-model             -- net
-image             -- Input image as tensor of shape (1, 3, 224, 224)
-target_label      -- Target label as tensor of shape (1)
-return_grad       -- Returns gradient if set True
+{% highlight python%}
+def predict(model, image, target_label, return_grad=False):
+    '''
+    Predicts the class of the given image and compares the prediction with the provided label.
     
-Returns:
-predicted_classes -- Numpy array of top 5 predicted class indices
-confidences       -- Numpy array of top 5 confidences in descending order
-gradient          -- None if return_grad=False. Otherwise the gradient from the prediction
-                     as a tensor of shape ().
+    Inputs:
+    model             -- net
+    image             -- Input image as tensor of shape (1, 3, 224, 224)
+    target_label      -- Target label as tensor of shape (1)
+    return_grad       -- Returns gradient if set True
+    
+    Returns:
+    predicted_classes -- Numpy array of top 5 predicted class indices
+    confidences       -- Numpy array of top 5 confidences in descending order
+    gradient          -- None if return_grad=False. Otherwise the gradient from the prediction
+                         as a tensor of shape ().
+    '''      
 {% endhighlight %}
 
-`def summarize_attack(image_clean, image_adv, conf_clean, conf_adv, label_clean, label_adv, label_target, idx, folder=None)`
+
 {% highlight python%}
-Summarizes attack by printing info and displaying the image along with the adversary and the isolated
-perturbance. Saves image to the folder.
+def summarize_attack(image_clean, image_adv, conf_clean, conf_adv, label_clean, label_adv, label_target, idx,
+                    folder=None):
+    '''
+    Summarizes attack by printing info and displaying the image along with the adversary and the isolated
+    perturbance. Saves image to the folder.
     
-Inputs:
-image_clean     -- Clean image as tensor of shape (1, 1, 28, 28)
-image_adv       -- Adversarial image as tensor of shape (1, 1, 28, 28)
-conf_clean      -- Confidence for the clean image
-conf_adv        -- Confidence for the adversarial image
-label_clean     -- Predicted label from the clean image
-label_adv       -- Predicted label from the adversarial image
-label_target    -- Target label as tensor of shape (1)
-idx             -- Sample index used for filename of plot export
-folder          -- If not None folder to which the image is saved.
+    Inputs:
+    image_clean     -- Clean image as tensor of shape (1, 1, 28, 28)
+    image_adv       -- Adversarial image as tensor of shape (1, 1, 28, 28)
+    conf_clean      -- Confidence for the clean image
+    conf_adv        -- Confidence for the adversarial image
+    label_clean     -- Predicted label from the clean image
+    label_adv       -- Predicted label from the adversarial image
+    label_target    -- Target label as tensor of shape (1)
+    idx             -- Sample index used for filename of plot export
+    folder          -- If not None folder to which the image is saved.
+    '''
 {% endhighlight %}
