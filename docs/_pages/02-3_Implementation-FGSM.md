@@ -21,27 +21,9 @@ One downside of the FGSM is that the manipulated images are often perceptible fo
 
 The notebook is available <a id="raw-url" href="https://raw.githubusercontent.com/daved01/Adversarial_Examples/master/01_Fast-Gradient-Sign-Method.ipynb" download>here</a>.
 
-We first load and preprocess the data as required:
+We first load and preprocess the data as previously explained. The attack is implemented as:
 
-{% highlight python %}
-mean = [0.485, 0.456, 0.406]
-std = [0.229, 0.224, 0.225]   
-
-preprocess = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=mean, std=std)
-    ])
-
-data_loader = torch.utils.data.DataLoader(
-    ImageNetSubset("data/ImageNet_subset//dev_dataset.csv", "data/ImageNet_subset//images/", transform=preprocess))
-{% endhighlight %}
-
-
-The attack is implemented as:
-
-{% highlight python %}
+{% highlight python linenos %}
 def attack_FGSM(mean, std, image, epsilon, grad_x):
     '''
     Applies Fast Gradient Sign Method (FGSM) attack on the input image.
@@ -56,9 +38,38 @@ def attack_FGSM(mean, std, image, epsilon, grad_x):
     Returns:
     image_tilde    -- Adversarial image as tensor
     '''
+    
+    ## Calculated normalized epsilon and convert it to a tensor   
+    eps_normed = [epsilon/s for s in std]
+    eps_normed = torch.tensor(eps_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
+    
+    ## Compute eta part
+    eta = eps_normed * grad_x.sign()
+
+    ## Apply perturbation
+    image_tilde = image + eta    
+    
+    ## Clip image to maintain the range [min, max]
+    image_tilde = torch.clamp(image_tilde, image.detach().min(), image.detach().max())
+    
+    ## Calculate normalized range [0, 1] and convert them to tensors
+    zero_normed = [-m/s for m,s in zip(mean, std)]
+    zero_normed = torch.tensor(zero_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
+    
+    max_normed = [(1-m)/s for m,s in zip(mean,std)]
+    max_normed = torch.tensor(max_normed, dtype=torch.float).unsqueeze(-1).unsqueeze(-1)
+    
+    ## Clip image so after denormalization and destandardization, the range is [0, 255]
+    image_tilde = torch.max(image_tilde, zero_normed)
+    image_tilde = torch.min(image_tilde, max_normed)
+    
+    return image_tilde
 {% endhighlight %}
 
-Furthermore we use the following functions:
+We have to provide $$\epsilon$$ normalized with 255. Since we standardize and scale the data in the data preparation we have to divide epsilons channel-wise by the standard deviation (line 17). We clip the values to the range of the original image in line 27, which is equivalent to keeping the values in the range of [0, 1] for an image which has not been standardized and scaled.
+
+
+Furthermore, we use the following functions:
 
 {% highlight python %}
 def visualize_attack_FGSM(data_loader, mean, std, model, predict, epsilon, sample, summarize_attack, folder=None):
@@ -210,4 +221,4 @@ def iterate_epsilons_FGSM(data_loader, mean, std, model, predict, sample, idx_to
 {% endhighlight %}
 
 
-In the following section we investigate how the FGSM attack performs.
+In the section results we investigate how the FGSM attack performs.

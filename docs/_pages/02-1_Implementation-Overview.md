@@ -28,13 +28,13 @@ To follow along with the implementations we recommend to clone the [repository](
 
 
 ## Model
-As model a pre-trained GoogLeNet Inception v1 model architecture is used. It is a 22 layer (when not counting pooling) deep neural net with inception blocks [???]. It can be directly imported from the PyTorch [library](https://pytorch.org/docs/stable/torchvision/models.html?highlight=googlenet#torchvision.models.googlenet). In the ImageNet competition of 2014 (ILSVRC 2014) this architecture has won the 1st price with an accuracy of $$93.3$$%.
+As model we use a pre-trained GoogLeNet Inception v1 model architecture [Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842). It is a 22 layer (when not counting pooling) deep neural net with inception blocks. It was trained on the ImageNet dataset and can be directly imported from the PyTorch [library](https://pytorch.org/docs/stable/torchvision/models.html?highlight=googlenet#torchvision.models.googlenet). In the [ImageNet competition of 2014](http://www.image-net.org/challenges/LSVRC/2014/results) this architecture achieved the lowest classification error in the category classification and localization with provided training data.
 
 
 ## Data
 To assess the impact of adversarial examples, a dataset with a large number of classes is preferred. The ImageNet dataset contains 1000 classes. However, instead of using the 100,000 images for testing, in this project a similar dataset is used from the *NIPS 2017: Non-targeted Adversarial Attack* challenge hosted on [Kaggle](https://www.kaggle.com/c/nips-2017-non-targeted-adversarial-attack). It consists of 1000 images and can be handled on a CPU. A Kaggle account is required to access it.
 
-As required by the model, the data is preprocessed:
+As required by the model, we scale and normalize the data:
 
 {% highlight python %}
 mean = [0.485, 0.456, 0.406]
@@ -46,7 +46,11 @@ preprocess = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=mean, std=std)
     ])
+{% endhighlight %}
 
+We define the dataloader object in the module `dataset`:
+
+{% highlight python %}
 data_loader = torch.utils.data.DataLoader(
     ImageNetSubset("data/ImageNet_subset/dev_dataset.csv", 
     "data/ImageNet_subset//images/", transform=preprocess))
@@ -55,7 +59,7 @@ data_loader = torch.utils.data.DataLoader(
 
 ## Module Helper
 
-The module `helper` contains functions which are not attack method specific.
+The module `helper` contains functions which are not attack-method specific.
 
 
 {% highlight python%}
