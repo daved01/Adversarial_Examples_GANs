@@ -34,7 +34,7 @@ Top 1 means that the predicted class is the correct class. Top 5 means that the 
 
 The following is an example of the original image, the generated perturbance, and the resulting adversarial image using the Fast Gradient Sign Method:
 
-{% include image.html file="Sample_766_pair.png" description="Figure 3: Original image, the with the FGSM generated perturbance and resulting adversarial image. This attack decreases the network’s confidence from almost 100% down to 14%" %}
+{% include image.html file="Sample_766_pair.png" description="Figure 3: Original image, the with the FGSM generated perturbance and resulting adversarial image. This attack decreases the network’s confidence from almost 100% down to 14%." %}
 
 The adversarial image appears slightly blurrier than the original one, like for example taken at poorer resolution or with a worse camera. Without the reference image however, it can be difficult to tell that it has been modified. With increasing attack strength, this becomes noticeable as can be seen in the following images:
 
@@ -42,7 +42,7 @@ The adversarial image appears slightly blurrier than the original one, like for 
 
 The image appears more and more noisy. We later show methods which produce cleaner looking adversaries.
 
-But how effective is this attack in tricking the network? Recall that we want to produce images which cause a prediction of a wrong class at a high confidence. From the figure below you can see that the confidence drops sharply while the class changes only for a few epsilons. The example above is the sample with which the model has the highest confidence on clean data. We have seen this behaviour with other images with high confidence in the dataset. This leads us to the first hypothesis:
+But how effective is this attack in tricking the network? Recall that we want to produce images which cause a prediction of a wrong class at a high confidence. From figure 7 you can see that the confidence drops sharply while the class changes only for a few epsilons. The example above is the sample with which the model has one of the highest confidences on clean data. We have seen this same behaviour with other images with high confidence in the dataset. This leads us to the first hypothesis:
 
 **Hypothesis 1:** Images with a high initial confidence are harder to manipulate.
 
@@ -50,7 +50,7 @@ But how effective is this attack in tricking the network? Recall that we want to
 ### All Images
 We consider a plot of accuracy and confidence over the attack strength epsilon. For this hypothesis to be true we would observe a sharp drop in accuracy with increasing attack strength. The higher the initial confidence is, the smaller the slope of the accuracy should be. It is harder to attack the network at the same epsilon. At the same time the confidence should drop slightly since more and more robust features are altered.
 
-Recall from the section Data Exploration how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in the interval of 5% points.
+Recall from the section Data Exploration how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in ranges of 5% points.
 
 {% include image.html file="Accuracies_Confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Examples that are labelled incorrectly by the model without adversarial perturbations are excluded." %}
 
@@ -66,9 +66,38 @@ A smaller increase in confidence after a dip can also be seen in figure 7. Despi
 
 The previous examples showed images with high initial confidence. It is not possible to generate an adversary with higher confidence than the original one for these cases. Figure 8 shows where it is possible. The initial confidence is quite low (around 50%). The FGSM can manipulate this image easily and achieves a confidence of 80%!
 
-{% include image.html file="Individual_Images-Sample_258.png" description="Figure 8:  Example for low initial confidence and greater adversarial confidence. Note how a small perturbation achieves the best results here. In this particular attack the perturbation is so slight that it is not representable in an 8bit image."%}
+{% include image.html file="Individual_Images-Sample_258.png" description="Figure 8: Example for low initial confidence and greater adversarial confidence. Note how a small perturbation achieves the best results here. In this particular attack the perturbation is so slight that it is not representable in an 8bit image."%}
 
 After analyzing the FGSM we now turn to a method derived from it, the basic iterative method BIM.
 
 ## BIM
+The authors in [Adversarial Examples in the Physical World](http://arxiv.org/abs/1607.02533) introduce BIM as an extension of FGSM to generate stronger adversaries for higher computational costs. In figure 9 we show the influence of the two hyperparameters $$\alpha$$ and *num_iter* on the attack with the top image from figure 6. We see that BIM is able to generate an adversary which fools the network while FGSM cannot.
+
+
+{% include image.html file="BIM-Hyperparameter_variation_132.png" description="Figure 9: Effects of the two hyperparameters for BIM. In each row the number of iterations increases from left to right at a constant alpha. We chose the alphas 1/255, 10/255, 68/255 and for number of iterations 1, 10, 15, 24. On the top left both alpha and number of iterations are 1. This attack is similar to FGSM with an additional clipping of each pixel value. Note how the number of iterations has a strong impact on the predicted class whereas alpha does not."%}
+
+We can see that for this sample increasing alpha generally causes the confidence to drop for smaller epsilons, as shown on the vertical axis from the top left corner. By increasing alpha only it is not possible to change the predicted class. This is expected since alpha is the parameter from the “fast” part of BIM. However, changing the class is possible by increasing the number of iterations. The best results are in the top right plot (lowest alpha, highest number of iterations). For two epsilons the networks predicts a false class with almost 80% confidence. Considering that FGSM was not able to change the class at all this is a strong result. The authors recommend keeping alpha at 1/255 and changing the number of iterations with a heuristic based on epsilon. 
+
+For the rest of this report we choose the hyperparameters as suggested by the authors. In figure 10 we attack with the same images as in figure 8.
+
+{% include image.html file="BIM_Individual_Images-Dont_Bounce_Back.png" description="Figure 10: Example with high (top) and low (bottom) clean confidence. Clean image is on the left, the adversarial confidence for select epsilon second, third top 5 confidence for the clean case and top 5 confidence for the highest adversarial confidence. In contrast to FGSM BIM is able to generate six adversaries in the top case. For the bottom BIM is not able to achieve higher confidence than FGSM."%}
+
+For the top the network is very confident in the clean case. FGSM is able to change the class at a low confidence for a few epsilon only. In contrast, BIM is able to achieve an adversarial confidence of almost 80%. Additionally, the “bounce-back” effect seen for FGSM is not present. Interestingly, for the bottom image BIM is not able to generate higher confidence with the adversary. Given that in both cases the best adversary is for small epsilon it is likely that for both methods the perturbations are imperceptible. We investigate the perceptibility of adversaries generated by different methods below. Note that this example falsifies hypothesis 1 for BIM since, measured by adversarial confidence, it appears to be harder to manipulate this image with low initial confidence than the example at the top.
+
+So far it seems as if BIM is more successful in attacking the network. Let’s see how the general behaviour on all samples is.
+
+
+### All Images
+As for FGSM, to test hypothesis 1 we generate adversaries for different initial confidence ranges. Figure 11 shows that BIM is able to generate adversaries much more consistently than FGSM. For an epsilon great 10 all attacks are successful. The slopes for lower confidence ranges is like for FGSM greater.
+
+{% include image.html file="BIM-Accuracies_Confidences.png" description="Figure 11: Top 1 accuracy and adversarial confidence for BIM and how they compare to FGSM. Overall BIM is able to generate adversaries more successfully and at higher confidences. Note that as for FGSM if the clean confidence is higher, it is on average harder to generate adversaries for smaller epsilons, which also have a lower confidence."%}
+
+On the right side you can see that BIM generates not only more consistently, but also stronger adversaries. Interesting is the dip for low epsilons. For small epsilons BIM and FGSM are fairly similar, since we use calculate the number of iterations based on epsilon and keep alpha pixel-wise at 1. The more epsilon growth, the more different BIM becomes.
+
+The two methods analyzed so far generate untargeted attacks. Next, we investigate the ILLM which targets the least likeliest class.
+
+
+## Least Likeliest Class Method
+
+
 

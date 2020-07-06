@@ -5,7 +5,7 @@ title: Basic Iterative Method
 
 ---
 
-The Basic Iterative Method (BIM) from [Adversarial Examples in the Physical World]((http://arxiv.org/abs/1607.02533)) is a simple extension of the Fast Gradient Sign Method, where instead of taking one large step, it applies the FGSM multiple times to an image with step size $$\alpha$$. The resulting adversary can then be clipped to limit the maximum perturbance for each pixel.
+The Basic Iterative Method (BIM) from [Adversarial Examples in the Physical World](http://arxiv.org/abs/1607.02533) is a simple extension of the Fast Gradient Sign Method, where instead of taking one large step, it applies the FGSM multiple times to an image with step size $$\alpha$$. The resulting adversary can then be clipped to limit the maximum perturbance for each pixel.
 
 Iterative methods like the BIM are slower, but generally produce more successful and subtle perturbation to images.
 
@@ -151,9 +151,9 @@ def single_attack_stats_BIM(data_loader, mean, std, model, predict, epsilon, alp
 
 
 {% highlight python %}
-def visualize_attack_BIM(data_loader, mean, std, model, predict, epsilon, alpha, sample, summarize_attack,folder=None):
+def visualize_attack_BIM(data_loader, mean, std, model, predict, epsilon, alpha, sample, summarize_attack, folder=None):
     '''
-    Generates an example using BIM. Prints infos and plots clean, generated perturbance and resulting adversarial image side-by-side.
+    Generates an adversary using BIM. Prints infos and plots clean, generated perturbance and resulting adversarial image side-by-side.
     
     Inputs:
     data_loader      -- Pytorch data loader object
@@ -229,11 +229,11 @@ def confidence_range_attack_BIM(data_loader, mean, std, model, predict, epsilons
 
 
 {% highlight python %}
-def analyze_attack_BIM(data_loader, mean, std, model, predict, alpha, sample, epsilon_conf, show_tensor_image, idx_to_name, 
-num_iterations=None, save_plot=False, print_output=True):
+def analyze_attack_BIM(data_loader, mean, std, model, predict, alpha, sample, epsilon_conf, show_tensor_image, idx_to_name, fixed_num_iter=None, save_plot=False, print_output=True):
     '''
-    Generates 4 plots: Image, conf over epsilon, top 5 conf for clean image, top 5 conf for adversarial image.
-    
+    Generates 4 plots: Image, confidence over epsilon, top 5 confidence for clean image, top 5 confidence for adversarial image.
+    The epsilons are: 0, 0.5/255, 1/255, 2/255, 4/255, 8/255, 12/255, 16/255, 20/255
+
     Inputs:
     data_loader       -- Pytorch data loader object
     mean              -- Mean from data preparation
@@ -241,10 +241,39 @@ num_iterations=None, save_plot=False, print_output=True):
     model             -- Network under attack   
     predict           -- Predict function from module helper   
     alpha             -- Hyperparameter for iterative step as absolute value. Has to be scaled to alpha/255
-    epsilon_conf      --
-    show_tensor_image -- 
-    num_iterations    --
-    save_plot         --
-    print_output      -- 
+    epsilon_conf      -- Epsilon for which to show the distribution in the last plot
+    show_tensor_image -- Converts tensor to image. From helper module
+    idx_to_name       -- Function to return the class name from a class index. From module helper
+    fixed_num_iter    -- Fixed number of iterations for BIM. Calculates the recommended number for each epsilon if not given
+    save_plot         -- Saves the plot to folder BIM if True
+    print_output      -- Prints stats if True
     '''  
+{% endhighlight %}
+
+
+{% highlight python %}
+def compute_hyperparameter_plot(data_loader, mean, std, model, predict, three_alphas, four_num_iter, sample, 
+                                show_tensor_image, idx_to_name, save_plot=False, print_output=False):
+    '''
+    Generates 12 plots of confidences over epsilons for BIM attacks for provided combination of 
+    three alphas and and four number_iterations.
+    
+    Rows:             Increasing number of iteratiosn from left to right
+    Columns:          Increasing number of alpha from top to bottom.
+    The epsilons are: 0, 0.5/255, 1/255, 2/255, 4/255, 8/255, 12/255, 16/255, 20/255
+
+    Inputs:
+    data_loader       -- Pytorch data loader object
+    mean              -- Mean from data preparation
+    std               -- Standard deviation from data preparation
+    model             -- Network under attack   
+    predict           -- Predict function from module helper   
+    three_alpha       -- List of three alphas. Each has to be scaled to alpha/255
+    four_num_iter     -- List of four number of iterations
+    sample            -- Image to be used for attack
+    show_tensor_image -- Converts tensor to image. From helper module
+    idx_to_name       -- Function to return the class name from a class index. From module helper
+    save_plot         -- Saves the plot as "BIM-Hyperparameter_variation_<sample>.png" to folder BIM if True
+    print_output      -- Prints stats if True
+    '''
 {% endhighlight %}
