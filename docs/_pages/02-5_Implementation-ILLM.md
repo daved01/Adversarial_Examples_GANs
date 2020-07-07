@@ -186,7 +186,7 @@ def all_samples_attack_ILLM(data_loader, mean, std, model, predict, epsilons, al
     top1          -- Top 1 accuracy
     top5          -- Top 5 accuracy
     conf          -- Confidence
-    ''' 
+    '''  
 {% endhighlight %}
 
 
@@ -238,5 +238,5 @@ def analyze_attack_ILLM(data_loader, mean, std, model, predict, alpha, sample, e
     fixed_num_iter    -- Fixed number of iterations for ILLM. Calculates the recommended number for each epsilon if not given
     save_plot         -- Saves the plot to folder ILLM if True
     print_output      -- Prints stats if True
-    '''
+    '''  
 {% endhighlight %}

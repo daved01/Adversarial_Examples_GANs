@@ -7,7 +7,7 @@ permalink: /results/
 
 In this section we discuss the performance of the different attacks. First we briefly look at the properties of the clean data. Then we attack the model with different models and analyze the success.
 
-## Data Exploration
+## 0. Data Exploration
 Considering that the goal of adversarial examples is to fool the network into predicting a wrong class with high confidence, a good place to start start is to inspect the model's performance without any adversarial perturbation.
 
 In the data there are 452 out of 1000 distinct classes represented. The most frequent class is `ballplayer, baseball player` (class index 981) with 8 occurrences, followed by `racer, race car, racing car`, `stone wall` and `worm fence, snake fence, snake-rail fence, ...` with 7 each. Within these frequent classes, the model's confidence is around $$58$$% with a standard deviation of around $$27$$. This large range in confidence is likely due to false predictions. Figure 1 shows how the the top 5 confidence is distributed for different confidences in their top predictions.
@@ -30,7 +30,7 @@ The table shows the model's overall performance.
 Top 1 means that the predicted class is the correct class. Top 5 means that the correct class is among the 5 predicted classes with the highest score.
 
 
-## Fast Gradient Sign Method
+## 1. Fast Gradient Sign Method
 
 The following is an example of the original image, the generated perturbance, and the resulting adversarial image using the Fast Gradient Sign Method:
 
@@ -47,7 +47,7 @@ But how effective is this attack in tricking the network? Recall that we want to
 **Hypothesis 1:** Images with a high initial confidence are harder to manipulate.
 
 
-### All Images
+### 1.1 All Images
 We consider a plot of accuracy and confidence over the attack strength epsilon. For this hypothesis to be true we would observe a sharp drop in accuracy with increasing attack strength. The higher the initial confidence is, the smaller the slope of the accuracy should be. It is harder to attack the network at the same epsilon. At the same time the confidence should drop slightly since more and more robust features are altered.
 
 Recall from the section Data Exploration how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in ranges of 5% points.
@@ -55,7 +55,7 @@ Recall from the section Data Exploration how the confidence over all data is dis
 {% include image.html file="Accuracies_Confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Examples that are labelled incorrectly by the model without adversarial perturbations are excluded." %}
 
 
-### Individual Images
+### 1.2 Individual Images
 In theory, increasing the size of the perturbation should lower the confidence of the model in predicting the correct class. We, however, have found some exceptions. Figure 6 shows two samples where the FGSM is not able to change the class while the model maintains a relatively high confidence. Interestingly, the confidence in the original correct class first quickly drops then increases again with increasing adversarial perturbance. In the first example, the model's confidence even reaches back to clean levels at the highest levels of perturbance.
 
 {% include image.html file="Individual_Images-Same_Class.png" description="Figure 6: Two examples for class-invariance under FGSM. On the left is the clean example. Next to it the confidence and if class is correct or not over multiple epsilons. The third plot shows the top 5 confidence for the clean case, whereas the rightmost plot shows the top 5 confidence when the top class is at its lowest confidence. The confidence increases again after an initial dip." %}
@@ -70,7 +70,7 @@ The previous examples showed images with high initial confidence. It is not poss
 
 After analyzing the FGSM we now turn to a method derived from it, the basic iterative method BIM.
 
-## BIM
+## 2. BIM
 The authors in [Adversarial Examples in the Physical World](http://arxiv.org/abs/1607.02533) introduce BIM as an extension of FGSM to generate stronger adversaries for higher computational costs. In figure 9 we show the influence of the two hyperparameters $$\alpha$$ and *num_iter* on the attack with the top image from figure 6. We see that BIM is able to generate an adversary which fools the network while FGSM cannot.
 
 
@@ -87,8 +87,8 @@ For the top the network is very confident in the clean case. FGSM is able to cha
 So far it seems as if BIM is more successful in attacking the network. Let’s see how the general behaviour on all samples is.
 
 
-### All Images
-As for FGSM, to test hypothesis 1 we generate adversaries for different initial confidence ranges. Figure 11 shows that BIM is able to generate adversaries much more consistently than FGSM. For an epsilon great 10 all attacks are successful. The slopes for lower confidence ranges is like for FGSM greater.
+### 2.1 All Images
+As for FGSM, to test hypothesis 1 we generate adversaries for different initial confidence ranges. Figure 11 shows that BIM is able to generate adversaries much more consistently than FGSM. For an epsilon greater 10 all attacks are successful. The slopes for lower confidence ranges is like for FGSM greater.
 
 {% include image.html file="BIM-Accuracies_Confidences.png" description="Figure 11: Top 1 accuracy and adversarial confidence for BIM and how they compare to FGSM. Overall BIM is able to generate adversaries more successfully and at higher confidences. Note that as for FGSM if the clean confidence is higher, it is on average harder to generate adversaries for smaller epsilons, which also have a lower confidence."%}
 
@@ -97,7 +97,28 @@ On the right side you can see that BIM generates not only more consistently, but
 The two methods analyzed so far generate untargeted attacks. Next, we investigate the ILLM which targets the least likeliest class.
 
 
-## Least Likeliest Class Method
+## 3. Least Likeliest Class Method
+This method is related to BIM but is targeted by making the network predict the class with the lowest clean confidence. Recall from figure 1 how the confidences for each class look like. For a well-trained classifier there is a significant gap between the highest and second highest confidence. While BIM tries to increase the loss on the correct class, which then leads to the second class becoming more likely, ILLM tries to decrease the loss on the class with the lowest confidence. The result often is a low overall confidence as seen in figure 12. Note that ILLM is on average also less successful in attacking the model than the FGSM.
+
+{% include image.html file="ILLM-compare_attacks_FGSM_BIM.png" description="Figure 12: Top 1 accuracy (left) and adversarial confidences (right) for FGSM, BIM and ILLM. The high probability that the adversarial class will be very different from the correct one comes at the cost of significantly worse performance in comparison to the related BIM method."%}
+
+
+### 3.1 Individual Images
+
+We find examples where ILLM performance is poor. In the top image of figure 13 the adversary tricks the network into believing it is looking at a hoop skirt rather than an apron. Considering that there are 1000 possible classes, including for example “baseball”, this choice seems poor since subjectively it is not very different. Additionally, the confidence is low. An adversary generated by BIM for example predicts “Arabian Camel” with 28% confidence.
+
+{% include image.html file="ILLM-confidences_two_examples.png" description="Figure 13: Confidences for two ILLM attacks. In the top example ILLM is able to generate an adversary with low confidence only. The rightmost plot shows how flat the confidence distribution for the lowest successful attack is. In the bottom example the adversary generates the same class as BIM, however at a lower confidence."%}
+
+The confidence distribution in the top image is as expected relatively flat. It appears as if ILLM gives much more confidence to each class rather than concentrating the confidence on a few classes, as explained above. In the bottom image of figure 13 you can see another example. With the first epsilon the adversary is able to change the class to “lionfish”, the same as BIM does. However, as you can see on the rightmost plot, the confidence iIma achieves over 80% adversarial confidence into same class. At the same time for ILLM the second class is higher than for BIM. This again supports the hypothesis that ILLM “flattens out” the confidence distribution rather than increasing the gap between 1st and 2nd.
+
+
+### 3.2 Perceptibility
+Finally, we look at perceptibility of the aforementioned attacks. In figure 14 you can see the image on the left and attacks with FGSM, BIM and ILLM. To make them comparable we attack with FGSM first and choose the highest adversarial confidence, which is around 24% here. Next we attack with BIM and find the first adversary for which the model has a similar confidence, also 24%. We proceed with ILLM.
+
+{% include image.html file="ILLM-comparison_all_methods.png" description="Figure 14: Attacks with FGSM (second from left), BIM (third) and ILLM (right). FGSM and BIM achieve a similar adversarial confidence of around 24%. Since for ILLM the confidence is significantly lower, the highest adversarial confidence of 3% was chosen. Epsilons are 20, 4, 12 for FGSM, BIM and ILLM."%}
+
+Subjectively, BIM generates the least perceptible adversary. At the same time it also generates the most confident adversary with around 60%. We have seen this for other images as well. BIM was for example able to change a correct, 90% confident detection of a fly to a 100% confident prediction of a bow (sample 894). ILLM on the other hand produces adversaries which cause predictions at overall low confidences.
 
 
 
+## 4. Conclusions
