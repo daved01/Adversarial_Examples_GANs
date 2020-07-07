@@ -17,6 +17,8 @@ The earliest and simplest method to generate adversarial examples is the Fast Gr
 \eta = \epsilon sign(\nabla_{x} J(\Theta, x, y))
 \end{equation}
 
+Essentially, FGSM takes one step to increase the cost function with the correct label, hoping that this will be enough to change the top prediction.
+
 One downside of the FGSM is that the manipulated images are often perceptible for humans for anything but the smallest changes in pixel values. This may be because this method can only modify pixel values upwards or downwards a constant value rather than a seemingly random value. Additionally, manipulations using this technique are particularly noticeable around the darker areas of an image because the relative magnitude of manipulation compared to the original image's pixel values. This can be improved by using iterative methods.
 
 The notebook is available <a id="raw-url" href="https://raw.githubusercontent.com/daved01/Adversarial_Examples/master/01_Fast-Gradient-Sign-Method.ipynb" download>here</a>.
