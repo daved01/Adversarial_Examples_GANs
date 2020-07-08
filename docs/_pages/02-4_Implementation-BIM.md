@@ -30,12 +30,12 @@ The adversarial example is then clipped to ensure that all pixel values are with
 \widetilde{X}\_{1} = min \( 255, X + \epsilon, max \( 0, X-\epsilon, X^{\prime}\_{1} \)\)
 \end{equation}
 
-Repeat these steps for $$N$$ iterations to get the final adversary. In the results section we investigate how the number of iterations as well as the choices for epsilon and alpha influence the success of an attack. In the paper the authors suggest the following values for the hyperparameters:
+Repeat these steps for $$N$$ iterations to get the final adversary. In the results section 2.2 we investigate how the number of iterations as well as the choices for epsilon and alpha influence the success of an attack. In the paper the authors suggest the following values for the hyperparameters:
 
 - For alpha: $$\alpha = \frac{1}{255}$$
 - Number of iterations: $$min(4+\frac{\epsilon}{\alpha}, 1.25 \cdot \frac{\epsilon}{\alpha} )$$
 
-$$\alpha$$ is chosen to be one pixel intensity value and the number of iterations is calculated to ensure enough steps to allow for a pixel to reach the maximum adversarial perturbance, $$\epsilon$$
+$$\alpha$$ is chosen to be one pixel intensity value and the number of iterations is calculated to ensure enough steps to allow for a pixel to reach the maximum adversarial perturbance, $$\epsilon$$.
 
 ## Functions
 
