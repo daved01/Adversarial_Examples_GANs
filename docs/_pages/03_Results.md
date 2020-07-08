@@ -55,7 +55,7 @@ We consider a plot of accuracy and confidence over the attack strength epsilon. 
 
 Recall from the section Data Exploration how the confidence over all data is distributed. We consider correct initial classifications only and split the data by confidences in ranges of 5% points.
 
-{% include image.html file="Accuracies_Confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Examples that are labelled incorrectly by the model without adversarial perturbations are excluded." %}
+{% include image.html file="FGSM-accuracies_confidences.png" description="Figure 5: Accuracy (left) and confidence (right) for different initial confidences over increasing attack intensity. Examples that are labelled incorrectly by the model without adversarial perturbations are excluded." %}
 
 
 #### Individual Images
