@@ -13,6 +13,7 @@ The available notebooks are:
 - [`02_Fast-Gradient-Sign-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Gradient-Sign-Method.ipynb)
 - [`03_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Fast-Basic-Iterative-Method.ipynb)
 - [`04_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/04_Iterative-Least-Likely-Class-Method.ipynb)
+- [`05_Deep_Fool.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/05_Deep_Fool.ipynb)
 
 Most functions are implemented in modules which are imported into the notebooks. The modules are:
 

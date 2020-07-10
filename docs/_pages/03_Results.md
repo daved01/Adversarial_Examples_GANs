@@ -134,6 +134,8 @@ In conclusion, we have found that BIM is sufficient for application not only to 
 
 ### 2.4 Deep Fool
 
+{% include image.html file="DeepFool-compare_attacks.png" description="Figure 15: Comparison of attacks with DeepFool against other methods. While DeepFool is able to change the class with all attacks successfully, the confidences of the adversaries is on average only around 30%."%}
+
 
 
 ### 3. Perceptibility
