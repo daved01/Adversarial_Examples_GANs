@@ -3,10 +3,16 @@ layout: mainpage
 ---
 
 
-The images above depict a stop light detector for an automated vehicle. By adding a small, imperceptible perturbation to an image it is possible to change the output of a neural network. In this example the red light is detected as green, which could signal the vehicle to accelerate through the intersection.
+The images above depict a stop light detector for an automated vehicle. By adding a small, imperceptible perturbation to an image it is possible to change the output of a neural network. This also works in the physical world. In this hypothetical example the red light is detected as green, which could signal the vehicle to accelerate through the intersection.
 These slightly modified images that mislead neural networks are known as adversarial examples.
 <br>
 <br>
-On this website we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">review</a> selected references to present the current state of research of that topic.
+Studying this phenomenon is not only important from a safety point of view, but also offers insights into
+how deep neural networks learn. The existance of adversarial examples shows the limitations of the learned 
+representations. 
+<br>
+<br>
+On this website we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">review</a> selected references to 
+present the current state of research of that topic.
 To learn more about how they work we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">implement</a> selected attack methods in Jupter notebooks and explain the steps.
 We then compare the effectiveness of these attacks in the <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03_Results.md %}">results</a> section.

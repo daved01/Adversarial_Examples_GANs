@@ -7,7 +7,9 @@ permalink: /state_of_the_art/
 
 An adversarial example is a slightly modified input that is designed to mislead a machine learning model. In the context of this project we focus on images as inputs. However, adversarial examples exists for other domains as well (e.g. <a href="https://nicholas.carlini.com/code/audio_adversarial_examples">audio</a>) [[1]](#cite1). To craft such deceptive inputs, a clean input is often used and modified in a way that reduces the target neural network's confidence on the correct label. The induced perturbations are designed to be so subtle that they are hardly perceptible to a human. 
 
-These manipulations can even occur in the physical world by modifying the appearance of an object [[2]](#cite2). With the adoption of neural networks in autonomous vehicles for example the existence of adversarial examples can cause serious safety concerns such as misreading road markings or stop signs. 
+These manipulations can even occur in the physical world by modifying the appearance of an object [[2]](#cite2). With the adoption of neural networks in autonomous vehicles for example the existence of adversarial examples can cause serious safety concerns such as misreading road markings or stop signs.
+
+Deep neural networks can be attacked in both the training or inference phase [???]. We focus on the latter.
 
 ## Why adversarial examples exist
 Since the discovery of adversarial examples [[3]](#cite3), varying explanations for this phenomenon have been given. The first hypothesis was that they were caused by the highly non-linear nature of neural networks, creating predictions for inputs wherefor there are no nearby training examples [[3]](#cite3). The authors also found that adversarial examples transfer between different models which is often referred to as called *transferability*.
