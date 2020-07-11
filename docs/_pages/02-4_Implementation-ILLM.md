@@ -5,7 +5,9 @@ title: Iterative Least Likely Method
 
 ---
 
-Both of the previous methods only try (they don’t guarantee a false classification) to change the prediction to a different class. When attacking a classifier with a lot of similar classes this can lead to uninteresting results. For example, one dog breed would be classified as another dog breed but not as a cat. The Iterative Least Likely Class Method (ILLM) from [Adversarial Examples in the Physical World]((http://arxiv.org/abs/1607.02533)) looks at the prediction on a clean image and modifies it to output the least likely class.
+Both of the previous methods are untargeted attacks, so they only try to change the prediction to another class, most likely one similar to that of the original class leading to uninteresting results. For example, adversarially perturbation may only confuse the classifier from labelling a Husky as an Alaskan Malamute, two similar looking breeds of dog. With some small modifications to the Basic Iterative Method, it is possible to turn it into a targetted adversarial attack. 
+
+By changing the BIM algorthm to alter the image towards a specific target class instead of away from the correct class, it creates . A problem arises in studying the effectiveness of the algorithm because it would be dependent of the target class. In targetting the least likely class by choosing the lowest confidence class in each image gives the Iterative Least Likely Class Method (ILLM) [Adversarial Examples in the Physical World]((http://arxiv.org/abs/1607.02533)). By choosing the least likely class for each example, it gives an idea of the worst case scenario for the algorithm.
 
 Similar to BIM a clean image $$X$$ is used for initialization in iteration $$N=0$$:
 
@@ -14,7 +16,7 @@ Similar to BIM a clean image $$X$$ is used for initialization in iteration $$N=0
 \widetilde{X}_{0} = X 
 \end{equation}
 
-The fast step is similar to BIM. Instead of using the loss with regard to the correct class the least likeliest class $$Y_{LL}$$ is used:
+The next step is similar to BIM. The most noteable changes are the change in the + to a - to represent the modification of the image towards class $$Y_{LL}$$, the least likely class, as opposed to modifying it away from the correct label.
 
 \begin{equation}
 \tag{3.2}
