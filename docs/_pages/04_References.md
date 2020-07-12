@@ -46,3 +46,11 @@ Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting 
 Neekhara, P., Hussain, S., Jere, M., Koushanfar, F., & McAuley, J. (2020). Adversarial Deepfakes: Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples. [ArXiv:2002.12749](http://arxiv.org/abs/2002.12749) [Cs].
 
 Goodfellow, I., Papernot, N., Huang, S., Duan, R., Abeel, P., & Clark, J. (2017). Attacking Machine Learning with Adversarial Examples. [https://openai.com/blog/adversarial-example-research/](https://openai.com/blog/adversarial-example-research/)
+
+Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
+
+Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
+
+Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
+
+Huang, L., Joseph, A. D., Nelson, B., Rubinstein, B. I. P., & Tygar, J. D. (n.d.). Adversarial Machine Learning. 15.
