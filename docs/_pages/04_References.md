@@ -54,3 +54,9 @@ Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Str
 Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
 
 Huang, L., Joseph, A. D., Nelson, B., Rubinstein, B. I. P., & Tygar, J. D. (n.d.). Adversarial Machine Learning. 15.
+
+Papernot, N., McDaniel, P., & Goodfellow, I. (2016). Transferability in Machine Learning: From Phenomena to Black-Box Attacks using Adversarial Samples. ArXiv:1605.07277 [Cs]. [http://arxiv.org/abs/1605.07277](http://arxiv.org/abs/1605.07277)
+
+Papernot, N., McDaniel, P., Goodfellow, I., Jha, S., Celik, Z. B., & Swami, A. (2017). Practical Black-Box Attacks against Machine Learning. ArXiv:1602.02697 [Cs]. [http://arxiv.org/abs/1602.02697](http://arxiv.org/abs/1602.02697)
+
+Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)

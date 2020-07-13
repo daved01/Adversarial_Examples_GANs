@@ -5,14 +5,14 @@ title: Background
 permalink: /state_of_the_art/
 ---
 
-An adversarial example is a slightly modified input that is designed to mislead a machine learning model. In the context of this project we focus on images as inputs. However, adversarial examples exists for other domains as well (e.g. <a href="https://nicholas.carlini.com/code/audio_adversarial_examples">audio</a>) [[1]](#cite1). To craft such deceptive inputs, a clean input is often used and modified in a way that reduces the target neural network's confidence on the correct label. The induced perturbations are designed to be so subtle that they are hardly perceptible to a human. 
+An adversarial example is a slightly modified input that is designed to mislead a machine learning model. In the context of this project we focus on images as inputs and deep neural nets as models. However, adversarial examples exists for other domains as well (e.g. <a href="https://nicholas.carlini.com/code/audio_adversarial_examples">audio</a>) [[1]](#cite1). To craft such deceptive inputs, a clean input is often used and modified in a way that reduces the target neural network's confidence on the correct label. The induced perturbations are designed to be so subtle that they are hardly perceptible to a human. 
 
 These manipulations can even occur in the physical world by modifying the appearance of an object [[2]](#cite2). With the adoption of neural networks in autonomous vehicles for example the existence of adversarial examples can cause serious safety concerns such as misreading road markings or stop signs [[3]](#cite3).
 
 Deep neural networks can be attacked in both the training or inference phase [[4]](#cite4). We focus on the latter.
 
 ## Why adversarial examples exist
-Since the discovery of adversarial examples targeting classifiers [[5]](#cite5), varying explanations for this phenomenon have been given. The first hypothesis was that they were caused by the highly non-linear nature of neural networks, creating predictions for inputs wherefor there are no nearby training examples [[5]](#cite5). The authors also found that adversarial examples transfer between different models which is often referred to as called *transferability*.
+Since the discovery of adversarial examples targeting neural network classifiers [[5]](#cite5), varying explanations for this phenomenon have been given. The first hypothesis was that they were caused by the highly non-linear nature of neural networks, creating predictions for inputs wherefor there are no nearby training examples [[5]](#cite5). The authors also found that adversarial examples transfer between different models which is often referred to as called *transferability*.
 
 In 2015, this hypothesis was overturned in favour of another explanation [[6]](#cite6) suggesting that the linear behaviour of networks (use of Rectified Linear Units, linear behaviour of sigmoids around 0, etc.) allow for the existence of adversarial examples [[6]](#cite6) and introduced the *Fast Gradient Sign Method* (FGSM) to generate them.
 
@@ -35,33 +35,28 @@ Existing attack methods can be grouped into the following categories.
 
 **Digital attack**: An attacker has direct access to digital data fed into the model.
 
-Recently, [[9]](#cite9) have shown that network parameter can be extracted by analyzing the power consumption of the model during inference, a method called differential power analysis.
-
-Moreover, attacks can be **targeted** or **untargeted**. In the latter scenario the attack is successful if any wrong class is predicted. For the former attack type, a specific class is targeted. Most existing attack method require a gradient to work with. That's why in the case of black box attacks it is common to approximate the gradient by taking advantage of transferability.
+Moreover, attacks can be **targeted** or **untargeted**. In the latter scenario the attack is successful if any wrong class is predicted. For the former attack type, a specific class is targeted. Most existing attack method require a gradient to work with. Consequently, most black box attacks take advantage of transferability. Papernot et al. have shown that adversarial examples also transfer between different machine learning models and training datasets [[9,10]](#cite10) . Recently, [[11]](#cite11) have shown that network parameter can also be extracted by analyzing the power consumption of the model during inference.
 
 The following are the methods that we explore in this project.
 
 - Fast Gradient Sign Method (FGSM) by [[6]](#cite6)
 - Basic Iterative Method (BIM) by [[3]](#cite3)
 - Iterative Least Likely Class Method (ILLM) by [[3]](#cite3)
-- Deep Fool [[10]](#cite10)
+- Deep Fool [[12]](#cite12)
 
 
 ### Other methods
-The methods above modify all pixels to increase the loss. [[12]](#cite12) propose that rather than modifying all pixels slightly, only one (or few) pixels can be modified with greater magnitude. The result is an overall less perturbed image. The modification is generated by differential evolution.
+The methods above modify all pixels to increase the loss. [[13]](#cite13) propose that rather than modifying all pixels slightly, only one (or few) pixels can be modified with greater magnitude. The result is an overall less perturbed image. The modification is generated by differential evolution.
 
-In addition to the perceptibility of the perturbations it has been shown that adversarial examples can even fool humans when only briefly exposed to the image [[13]](#cite13). This is significant since it would suggest transferability to the human brain.
+In addition to the perceptibility of the perturbations it has been shown that adversarial examples can even fool humans when only briefly exposed to the image [[14]](#cite14). This is significant since it would suggest transferability to the human brain.
 
 
 ## How to defend against them
-As of this writing the best defence against adversarial examples is to conclude them in the training data of the model (adversarial training). [[14]](#cite14) created a library to support this by providing the common attack methods.
-
-
+As of this writing the best defence against adversarial examples is to include them in the training data of the model (adversarial training). [[15]](#cite15) created a library to support this by providing the common attack methods. Another approach is using another model which is specialized in detecting adversaries [[16]](#cite16).
 
 
 ## Beyond classification
-Adversarial examples also exist for semantic segmentation, object detection or pose estimation tasks. Two common algorithms to generate them are *Dense Adversary Generation* [[15]](#cite15) and *Houdini* [[16]](#cite16). Xiao et al. [[17]](#cite17) analyze these and find that for semantic segmentation adversaries do not transfer between models. Moreover, with spatial consistency check they introduce a promising detection mechanism for the segmentation task.
-
+Adversarial examples also exist for semantic segmentation, object detection or pose estimation tasks. Two common algorithms to generate them are *Dense Adversary Generation* [[17]](#cite17) and *Houdini* [[18]](#cite18). Xiao et al. [[19]](#cite19) analyze these and find that for semantic segmentation adversaries do not transfer between models. Moreover, with spatial consistency check they introduce a promising detection mechanism for the segmentation task.
 
 
 __________________
@@ -95,28 +90,37 @@ __________________
 [8] &emsp; Ilyas, A., Santurkar, S., Tsipras, D., Engstrom, L., Tran, B., & Madry, A. (2019). Adversarial Examples Are Not Bugs, They Are Features. ArXiv:1905.02175 [Cs, Stat]. [http://arxiv.org/abs/1905.02175](http://arxiv.org/abs/1905.02175)
 
 <a name="cite10"></a>
-[9]&emsp;  Dubey, A., Cammarota, R., & Aysu, A. (2019). MaskedNet: The First Hardware Inference Engine Aiming Power Side-Channel Protection. ArXiv:1910.13063 [Cs]. [http://arxiv.org/abs/1910.13063](http://arxiv.org/abs/1910.13063])
+[9] &emsp; Papernot, N., McDaniel, P., & Goodfellow, I. (2016). Transferability in Machine Learning: From Phenomena to Black-Box Attacks using Adversarial Samples. ArXiv:1605.07277 [Cs]. [http://arxiv.org/abs/1605.07277](http://arxiv.org/abs/1605.07277)
 
 <a name="cite11"></a>
-[10] &emsp; Moosavi-Dezfooli, S.-M., Fawzi, A., & Frossard, P. (2016). DeepFool: A Simple and Accurate Method to Fool Deep Neural Networks. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). [https://doi.org/10.1109/cvpr.2016.282](https://doi.org/10.1109/cvpr.2016.282)
+[10] &emsp; Papernot, N., McDaniel, P., Goodfellow, I., Jha, S., Celik, Z. B., & Swami, A. (2017). Practical Black-Box Attacks against Machine Learning. ArXiv:1602.02697 [Cs]. [http://arxiv.org/abs/1602.02697](http://arxiv.org/abs/1602.02697)
 
 <a name="cite12"></a>
-[11] &emsp; Papernot, N., McDaniel, P., Jha, S., Fredrikson, M., Celik, Z. B., & Swami, A. (2015). The Limitations of Deep Learning in Adversarial Settings. ArXiv:1511.07528 [Cs, Stat]. [http://arxiv.org/abs/1511.07528](http://arxiv.org/abs/1511.07528])
+[10]&emsp;  Dubey, A., Cammarota, R., & Aysu, A. (2019). MaskedNet: The First Hardware Inference Engine Aiming Power Side-Channel Protection. ArXiv:1910.13063 [Cs]. [http://arxiv.org/abs/1910.13063](http://arxiv.org/abs/1910.13063])
 
 <a name="cite13"></a>
-[12] &emsp; Su, J., Vargas, D. V., & Kouichi, S. (2019). One pixel attack for fooling deep neural networks. IEEE Transactions on Evolutionary Computation, 23(5), 828–841. [https://doi.org/10.1109/TEVC.2019.2890858](https://doi.org/10.1109/TEVC.2019.2890858)
+[11] &emsp; Moosavi-Dezfooli, S.-M., Fawzi, A., & Frossard, P. (2016). DeepFool: A Simple and Accurate Method to Fool Deep Neural Networks. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). [https://doi.org/10.1109/cvpr.2016.282](https://doi.org/10.1109/cvpr.2016.282)
 
 <a name="cite14"></a>
-[13] &emsp; Elsayed, G. F., Shankar, S., Cheung, B., Papernot, N., Kurakin, A., Goodfellow, I., & Sohl-Dickstein, J. (2018). Adversarial Examples that Fool both Computer Vision and Time-Limited Humans. ArXiv:1802.08195 [Cs, q-Bio, Stat]. [http://arxiv.org/abs/1802.08195](http://arxiv.org/abs/1802.08195)
+[12] &emsp; Papernot, N., McDaniel, P., Jha, S., Fredrikson, M., Celik, Z. B., & Swami, A. (2015). The Limitations of Deep Learning in Adversarial Settings. ArXiv:1511.07528 [Cs, Stat]. [http://arxiv.org/abs/1511.07528](http://arxiv.org/abs/1511.07528])
 
 <a name="cite15"></a>
-[14] &emsp; Papernot, N., Faghri, F., Carlini, N., Goodfellow, I., Feinman, R., Kurakin, A., Xie, C., Sharma, Y., Brown, T., Roy, A., Matyasko, A., Behzadan, V., Hambardzumyan, K., Zhang, Z., Juang, Y.-L., Li, Z., Sheatsley, R., Garg, A., Uesato, J., … McDaniel, P. (2018). Technical Report on the CleverHans v2.1.0 Adversarial Examples Library. ArXiv:1610.00768 [Cs, Stat]. [http://arxiv.org/abs/1610.00768](http://arxiv.org/abs/1610.00768)
+[13] &emsp; Su, J., Vargas, D. V., & Kouichi, S. (2019). One pixel attack for fooling deep neural networks. IEEE Transactions on Evolutionary Computation, 23(5), 828–841. [https://doi.org/10.1109/TEVC.2019.2890858](https://doi.org/10.1109/TEVC.2019.2890858)
 
 <a name="cite16"></a>
-[15] &emsp; Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
+[14] &emsp; Elsayed, G. F., Shankar, S., Cheung, B., Papernot, N., Kurakin, A., Goodfellow, I., & Sohl-Dickstein, J. (2018). Adversarial Examples that Fool both Computer Vision and Time-Limited Humans. ArXiv:1802.08195 [Cs, q-Bio, Stat]. [http://arxiv.org/abs/1802.08195](http://arxiv.org/abs/1802.08195)
 
 <a name="cite17"></a>
-[16] &emsp; Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
+[15] &emsp; Papernot, N., Faghri, F., Carlini, N., Goodfellow, I., Feinman, R., Kurakin, A., Xie, C., Sharma, Y., Brown, T., Roy, A., Matyasko, A., Behzadan, V., Hambardzumyan, K., Zhang, Z., Juang, Y.-L., Li, Z., Sheatsley, R., Garg, A., Uesato, J., … McDaniel, P. (2018). Technical Report on the CleverHans v2.1.0 Adversarial Examples Library. ArXiv:1610.00768 [Cs, Stat]. [http://arxiv.org/abs/1610.00768](http://arxiv.org/abs/1610.00768)
 
 <a name="cite18"></a>
-[17] &emsp; Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
+[16] &emsp; Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)
+
+<a name="cite19"></a>
+[17] &emsp; Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
+
+<a name="cite20"></a>
+[18] &emsp; Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
+
+<a name="cite21"></a>
+[19] &emsp; Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
