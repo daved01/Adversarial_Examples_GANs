@@ -1,11 +1,11 @@
 ---
 
 layout: page
-title: Deep Fool
+title: DeepFool
 
 ---
 
-The [Deep Fool](https://doi.org/10.1109/cvpr.2016.282) algorithm searches for an adversary with the smallest possible perturbation by orthogonally projecting from the sample onto the closest decision boundary and iteratively moving past it. According to the authors this method generates very subtle perturbations in contrast to the coarse approximations of the optimal perturbation vectors generates by FGSM.
+The [DeepFool](https://doi.org/10.1109/cvpr.2016.282) algorithm searches for an adversary with the smallest possible perturbation by orthogonally projecting from the sample onto the closest decision boundary and iteratively moving past it. According to the authors this method generates very subtle perturbations in contrast to the coarse approximations of the optimal perturbation vectors generates by FGSM.
 
 Figure 1 shows the concept behind DeepFool for a linear, binary classifier.
 
@@ -36,4 +36,4 @@ Result: $$r_{opt}$$
 
 The decision boundaries are linearized locally if they are non-linear. For multi-class classifier the steps above can be generalized. For details see the original paper.
 
-We use the Python implementation which is [available](https://github.com/lts4/deepfool) from the authors and copy it to the `modules` folder. To use it we have to remove the softmax layer from the googleNet which is shown in the [Jupiter Notebook](https://github.com/daved01/Adversarial_Examples/blob/master/05_Deep_Fool.ipynb).
+We use the Python implementation which is [available](https://github.com/lts4/deepfool) from the authors and copy it to the `modules` folder. To use it we have to remove the softmax layer from the googleNet which is shown in the [Jupyter Notebook](https://github.com/daved01/Adversarial_Examples/blob/master/05_Deep_Fool.ipynb).

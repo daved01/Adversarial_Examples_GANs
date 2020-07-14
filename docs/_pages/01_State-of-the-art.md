@@ -42,7 +42,7 @@ The following are the methods that we explore in this project.
 - Fast Gradient Sign Method (FGSM) by [[6]](#cite6)
 - Basic Iterative Method (BIM) by [[3]](#cite3)
 - Iterative Least Likely Class Method (ILLM) by [[3]](#cite3)
-- Deep Fool [[12]](#cite12)
+- DeepFool [[12]](#cite12)
 
 
 ### Other methods
