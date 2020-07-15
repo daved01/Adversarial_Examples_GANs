@@ -19,7 +19,19 @@
 					</div>
 				  </div>
 
-				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03_Results.md %}">Results</a></li>
+				  <div class="dropdown">
+					<button class="dropbtn">Results 
+					  <i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-1-Results_Data_Exploration.md %}">Data Exploration</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-2_Results_Attacks.md %}">Attacks</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-3_Results_Perceptability.md %}">Perceptability</a>
+					  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-4_Results_Conclusions.md %}">Conclusions</a>
+
+					</div>
+				  </div>
+
 				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/04_References.md %}">References</a></li>
 				  <li class="right"><a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/05_about.md %}">About</a></li>
 
@@ -27,8 +39,6 @@
 			</ul>
 			</li>
 			</ul>
-
-	
 
 		</nav>
 
