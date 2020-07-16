@@ -12,8 +12,8 @@ body {
   h3 {
     font-weight: 600;
     font-size: 1.5em;
-    color: $heading-font-color;
-    font-family: $heading-font;
+    color: $font-color;
+    font-family: $font-style;
     padding-top: 20px;
   }
   h1 {
@@ -22,11 +22,18 @@ body {
     a,
     a:visited {
       text-decoration: none;
-      color: $main;
+      color: $light;
     }
   }
   h2 {
     font-size: 2em;
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #ffffff;
+    font-family: $font-style;
+    padding-top: 0px;
   }
   a,
   a:visited {
@@ -40,7 +47,7 @@ body {
   }
  
   header {
-    background: $header;
+    background: $welcome-page-element;
     padding-top: 100px;
     padding-bottom: 250px;
     margin: auto;
@@ -65,6 +72,7 @@ body {
     max-width: 8000px;
     margin: 0 auto;
   }
+ 
   
   /* Aside */
   
@@ -72,7 +80,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background: $head;
+    background: $navbar-background;
     width: 165%;
     z-index: 2;
     border-bottom: 1px solid lighten($light, 30%);
@@ -91,23 +99,23 @@ body {
           position: relative;
           top: 0;
           right: 0;
-          background: #000000;
+          background: $navbar-background;
           a {
             text-align: center;
             text-decoration: none;
             font-weight: bold;
             display: block;
             padding: 15px;
-            font-family: 'Muli', sans-serif;
+            font-family: $navbar-font-style;
             font-size: medium;
             line-height: 20px;
             margin-bottom: -1px;
             box-shadow: 0;
-            color: #ffffff !important;
+            color: $navbar-font-color !important;
             &:hover,
             &:active {
               text-decoration: none;
-              color: rgb(245, 11, 11) !important;
+              color: $link-hover-color !important;
             }
           }
       }
@@ -117,23 +125,23 @@ body {
         top: 0;
         left: 0;
         width: 300px;
-        background: #000000;
+        background: $navbar-background;
         a {
           text-decoration: none;
           font-weight: bold;
           display: block;
           padding: 15px;
-          font-family: 'Muli', sans-serif;
+          font-family: $navbar-font-style;
           font-size: large;
           line-height: 20px;
           margin-bottom: -1px;
           box-shadow: 0;
-          color: #ffffff !important;
+          color: $navbar-font-color!important;
           &:hover,
           &:active {
             
             text-decoration: none;
-            color: rgb(245, 11, 11) !important;
+            color: $link-hover-color !important;
           }
         }
     }
@@ -148,15 +156,15 @@ body {
   .navbar {
     overflow: hidden;
     background-color: #333;
-    font-family: 'Muli', sans-serif;
+    font-family: $navbar-font-style;
   }
   
   /* Links inside the navbar */
   .navbar a {
     float: left;
-    font-family: 'Muli', sans-serif;
+    font-family: $navbar-font-style;
     font-size: medium;
-    color: white;
+    color: $navbar-font-color;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -174,7 +182,7 @@ body {
     outline: none;
     text-decoration: none;
     color: #ffffff;
-    font-family: 'Muli', sans-serif;
+    font-family: $navbar-font-style;
     font-size: medium;
     font-weight: bold;
     display: block;
@@ -188,7 +196,7 @@ body {
   
   /* Add a red colour to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-    color: rgb(245, 11, 11) !important;
+    color:$link-hover-color !important;
   }
   
   /* Dropdown content (hidden by default) */
@@ -225,12 +233,12 @@ body {
   }
   footer {  
     text-align: center;
-    background-color: $footer;
+    background-color: $footer-background;
     padding: 1px 15px;
     margin: 50px 0 0;
     height: 11vh;
     font-size: medium;
-    color: #ffffff;
+    color: $footer-font-color;
     a,
     a:visited {
       color: $footer-link;
@@ -238,7 +246,7 @@ body {
       font-weight: bold;
       &:hover
        {
-          color: rgb(245, 11, 11) !important;
+          color: $link-hover-color !important;
           text-decoration: underline;
       }
 
@@ -258,7 +266,7 @@ body {
   figure
   {
     font-size: small;
-    color: #444444;
+    color: $figure-font-color;
     max-width: $content-width;
 
   }

@@ -1,16 +1,23 @@
 $content-width: 900px;
-$main: #e7edf4 ;
+
 $font-style: 'Open Sans', sans-serif;
+
 $font-color: #020522;
 $link-color: #020522;
 $link-hover-color: rgb(245, 11, 11);
-$heading-font: 'Muli', sans-serif;
-$heading-font-color: #020522;
 $light: #e7edf4;
-$header: #000000;
-$head: #000000;
-$footer: #3e3f3f;
+
+$welcome-page-element: linear-gradient(to bottom, #212121d0 0%, #060505eb 100%);
+
+$navbar-background: #000000;
+$navbar-font-style: 'Muli', sans-serif;
+$navbar-font-color: #ffffff;
+
+$footer-background: #3e3f3f;
+$footer-font-color: #ffffff;
 $footer-link: #ffffff;
+
+$figure-font-color: #444444;
 
 *,
 *::before,
