@@ -37,8 +37,6 @@ Repeat these steps for $$N$$ iterations to get the final adversary. In the resul
 
 $$\alpha$$ is chosen to be one pixel intensity value and the number of iterations is calculated to ensure enough steps to allow for a pixel to reach the maximum adversarial perturbance, $$\epsilon$$.
 
-## Functions
-
 We implement BIM as follows:
 
 {% highlight python linenos %}
