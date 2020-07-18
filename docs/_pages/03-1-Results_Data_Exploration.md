@@ -18,9 +18,7 @@ The average confidence for a class is between $$99.99$$% (`barrel, cask`) and $$
 
 {% include image.html file="Data_Exploration-Average-confidence_per_class.png" description="Figure 2: Average confidence per class in descending order. The majority of classes consist of only one sample. The highest number of samples per class is 8." %}
 
-
 The table shows the model's overall performance.
-
 
 |                | Confidence    |  Accuracy     |
 | :------------- | :----------:  | :----------:  | 
