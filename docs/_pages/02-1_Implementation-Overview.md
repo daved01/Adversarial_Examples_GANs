@@ -11,7 +11,7 @@ The available notebooks are:
 - [`00_Helper-Functions.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/00_Helper-Functions.ipynb)
 - [`01_Data_Exploration.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/01_Data_Exploration.ipynb)
 - [`02_Fast-Gradient-Sign-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/02_Fast-Gradient-Sign-Method.ipynb)
-- [`03_Fast-Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Fast-Basic-Iterative-Method.ipynb)
+- [`03_Basic-Iterative-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/03_Basic-Iterative-Method.ipynb)
 - [`04_Iterative-Least-Likely-Class-Method.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/04_Iterative-Least-Likely-Class-Method.ipynb)
 - [`05_Deep_Fool.ipynb`](https://github.com/daved01/Adversarial_Examples/blob/master/05_Deep_Fool.ipynb)
 
