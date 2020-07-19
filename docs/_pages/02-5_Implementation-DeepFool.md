@@ -35,6 +35,6 @@ X_{i+1} = X_{i} + r_{i}
 
 Result: $$r_{opt}$$
 
-The decision boundaries are linearized locally if they are non-linear. For multi-class classifier the steps above can be generalized. For details see the original paper.
+For multi-class classifier the steps above can be generalized. For details see the original paper.
 
 We use the Python implementation which is [available](https://github.com/lts4/deepfool) from the authors and copy it to the `modules` folder.
