@@ -17,7 +17,7 @@ The earliest and simplest method to generate adversarial examples is the Fast Gr
 \eta = \epsilon sign(\nabla_{x} J(\Theta, x, y))
 \end{equation}
 
-Essentially, FGSM takes one step to increase the cost function with the correct label, hoping that this will be enough to change the top prediction. The main benefit of this technique is its speed
+Essentially, FGSM takes one step to increase the cost function with the correct label, hoping that this will be enough to change the top prediction. The main benefit of this technique is it takes relatively little computational time to create adversarial images.
 
 One downside of the FGSM is that the manipulated images are often perceptible for humans for anything but the smallest changes in pixel values. This may be because this method can only modify pixel values upwards or downwards a constant value rather than a seemingly random value. Additionally, manipulations using this technique are particularly noticeable around the darker areas of an image because the relative magnitude of manipulation compared to the original image's pixel values. This can be improved by using iterative methods.
 
@@ -68,6 +68,6 @@ def attack_FGSM(mean, std, image, epsilon, grad_x):
     return image_tilde
 {% endhighlight %}
 
-We have to provide $$\epsilon$$ normalized with 255. Since we standardize and scale the data in the data preparation we have to divide epsilons channel-wise by the standard deviation (line 17). We clip the values to the range of the original image in line 27, which is equivalent to keeping the values in the range of [0, 1] for an image which has not been standardized and scaled.
+In the data preparation step, the data is both normalized and standardized; therefore $$\epsilon$$ has to be as well. $$\epsilon$$ is normalized by dividing it by 255 and standardized by dividing it by the standard deviation of the data (line 17). The images are then clipped to ensure that the image's pixel values are between 0 and 255 after destandardization and denormalization.
 
 We investigate how the FGSM attack performs in the Results section.

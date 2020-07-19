@@ -5,7 +5,7 @@ title: Basic Iterative Method
 
 ---
 
-The Basic Iterative Method (BIM) from [Adversarial Examples in the Physical World](http://arxiv.org/abs/1607.02533) is a simple extension of the Fast Gradient Sign Method, where instead of taking one large step, it applies the FGSM multiple times to an image with step size $$\alpha$$, the change in pixel value per iteration. The resulting adversary can then be clipped to limit the maximum perturbance for each pixel.
+The Basic Iterative Method (BIM) from [Adversarial Examples in the Physical World](http://arxiv.org/abs/1607.02533) is a simple extension of the Fast Gradient Sign Method, where instead of taking one large step, it takes an iterative approach by applying FGSM multiple times to an image with step size $$\alpha$$, the change in pixel value per iteration. The resulting adversary can then be clipped to limit the maximum perturbance for each pixel.
 
 Iterative methods like the BIM are slower, but generally produce more successful and subtle perturbation to images.
 
@@ -35,7 +35,7 @@ Repeat these steps for $$N$$ iterations to get the final adversary. In the resul
 - For alpha: $$\alpha = \frac{1}{255}$$
 - Number of iterations: $$min(4+\frac{\epsilon}{\alpha}, 1.25 \cdot \frac{\epsilon}{\alpha} )$$
 
-$$\alpha$$ is chosen to be one pixel intensity value and the number of iterations is calculated to ensure enough steps to allow for a pixel to reach the maximum adversarial perturbance, $$\epsilon$$.
+$$\alpha$$ is chosen to be one pixel intensity value and the number of iterations is calculated to ensure enough steps to allow a pixel to reach the maximum adversarial perturbance, $$\epsilon$$.
 
 We implement BIM as follows:
 
