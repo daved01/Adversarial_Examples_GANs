@@ -5,7 +5,9 @@ title: DeepFool
 
 ---
 
-The [DeepFool](https://doi.org/10.1109/cvpr.2016.282) algorithm searches for an adversary with the smallest possible perturbation. By orthogonally projecting from the sample $$X_{0}$$ onto the decision boundaries it finds the closest. It then iteratively moves past it. According to the authors this method generates very subtle perturbations in contrast to the coarse approximations of the optimal perturbation vectors generates by FGSM.
+The [DeepFool](https://doi.org/10.1109/cvpr.2016.282) algorithm searches for an adversary with the smallest possible perturbation. The algorithm imagines the classifier's decision space being divided by linear hyperplane boundaries that divide the decision to select different classes. It then tries to shift the image's decision space location directly towards the closest decision boundary. However, the decision boundaries are often non-linear, so the algorithm completes the perturbation iteratively until it passes a decision boundary. 
+
+According to the authors this method generates very subtle perturbations in contrast to the coarse approximations of the optimal perturbation vectors generates by FGSM.
 
 Figure 1 shows the concept behind DeepFool for a linear, binary classifier.
 
