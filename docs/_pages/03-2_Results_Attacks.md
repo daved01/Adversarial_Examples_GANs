@@ -125,7 +125,7 @@ One advantage of DeepFool over the other methods is its robustness. Let’s look
 
 ### Individual Images
 
-The disadvantage of DeepFool seems to be the generally low adversarial confidence. In figure 17 the distribution is shown for the example of the highest adversarial confidence (top). The clean example achieves only about 70% confidence for class “trombone”. The perturbation in the adversary are imperceptible but the network now predicts “violin”. The first and second confidences are almost similar. This makes sense since DeepFool overshoots only slightly the decision boundary. We expect a similar pattern with all images. The first two confidences should be very similar while there’s a gap to the third.
+The disadvantage of DeepFool seems to be the generally low adversarial confidence. In figure 17 the distribution is shown for the example of the highest adversarial confidence (top). The clean example achieves only about 70% confidence for class “trombone”. The perturbation in the adversary are imperceptible but the network now predicts “violin”. The first and second confidences are almost similar. This makes sense since DeepFool overshoots only slightly the decision boundary. We expect a similar pattern with all images.
 
 {% include image.html file="DeepFool-two_examples.png" description="Figure 17:  Clean image, adversary, confidences of clean and adversarial images (from left to right). The top shows the example with the highest adversarial confidence while the bottom has the lowest in the data. Note that the perturbation is imperceptible."%}
 
