@@ -11,3 +11,5 @@ Finally, we look at perceptibility of the aforementioned attacks. In figure 18 y
 {% include image.html file="ILLM-comparison_all_methods.png" description="Figure 18: Attacks with FGSM (second from left), BIM (third) and ILLM (right). While epsilon for FGSM is 20, BIM achieves a similar adversarial confidence of 24% with an epsilon of just 4. Since for ILLM the adversarial confidence is consistently low, we chose epsilon of 20 for the right image."%}
 
 Subjectively, BIM generates the least perceptible adversary. At the same time it also generates the most confident adversary with around 60% for an epsilon of 12. We have seen this for other images as well. BIM was for example able to change a correct, 90% confident detection of a fly to a 100% confident prediction of a bow (sample 894).
+
+{% include image.html file="Perceptibility_Plots.png" description="Figure 19: Plots of the how perceptible each successful untargetted attack is measured by the mean normed difference between the clean and adversarial example. *FGSM was unsuccessful is 5.6% of the attacks up to an epsilon of 20." %}
