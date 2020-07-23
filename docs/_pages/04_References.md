@@ -9,10 +9,6 @@ Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Str
 
 Dubey, A., Cammarota, R., & Aysu, A. (2019). MaskedNet: The First Hardware Inference Engine Aiming Power Side-Channel Protection. ArXiv:1910.13063 [Cs]. [http://arxiv.org/abs/1910.13063](http://arxiv.org/abs/1910.13063])
 
-Elsayed, G. F., Shankar, S., Cheung, B., Papernot, N., Kurakin, A., Goodfellow, I., & Sohl-Dickstein, J. (2018). Adversarial Examples that Fool both Computer Vision and Time-Limited Humans. ArXiv:1802.08195 [Cs, q-Bio, Stat]. [http://arxiv.org/abs/1802.08195](http://arxiv.org/abs/1802.08195)
-
-Engstrom, L., Ilyas, A., & Athalye, A. (2018). Evaluating and Understanding the Robustness of Adversarial Logit Pairing. [ArXiv:1807.10272](http://arxiv.org/abs/1807.10272) [Cs, Stat].
-
 Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., Prakash, A., Kohno, T., & Song, D. (2018). Robust Physical-World Attacks on Deep Learning Models. ArXiv:1707.08945 [Cs]. [http://arxiv.org/abs/1707.08945](http://arxiv.org/abs/1707.08945)
 
 Goodfellow, I., Papernot, N., Huang, S., Duan, R., Abeel, P., & Clark, J. (2017). Attacking Machine Learning with Adversarial Examples. [https://openai.com/blog/adversarial-example-research/](https://openai.com/blog/adversarial-example-research/)
@@ -25,15 +21,11 @@ Huang, L., Joseph, A. D., Nelson, B., Rubinstein, B. I. P., & Tygar, J. D. (n.d.
 
 Ilyas, A., Santurkar, S., Tsipras, D., Engstrom, L., Tran, B., & Madry, A. (2019). Adversarial Examples Are Not Bugs, They Are Features. ArXiv:1905.02175 [Cs, Stat]. [http://arxiv.org/abs/1905.02175](http://arxiv.org/abs/1905.02175)
 
-Kannan, H., Kurakin, A., & Goodfellow, I. (2018). Adversarial Logit Pairing. [ArXiv:1803.06373](ttp://arxiv.org/abs/1803.06373) [Cs, Stat].
-
 Kurakin, A., Goodfellow, I., & Bengio, S. (2017). Adversarial examples in the physical world. [ArXiv:1607.02533](http://arxiv.org/abs/1607.02533) [Cs, Stat].
 
 Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)
 
 Moosavi-Dezfooli, S.-M., Fawzi, A., & Frossard, P. (2016). DeepFool: A Simple and Accurate Method to Fool Deep Neural Networks. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). [https://doi.org/10.1109/cvpr.2016.282](https://doi.org/10.1109/cvpr.2016.282)
-
-Neekhara, P., Hussain, S., Jere, M., Koushanfar, F., & McAuley, J. (2020). Adversarial Deepfakes: Evaluating Vulnerability of Deepfake Detectors to Adversarial Examples. [ArXiv:2002.12749](http://arxiv.org/abs/2002.12749) [Cs].
 
 Papernot, N., McDaniel, P., Goodfellow, I., Jha, S., Celik, Z. B., & Swami, A. (2017). Practical Black-Box Attacks against Machine Learning. ArXiv:1602.02697 [Cs]. [http://arxiv.org/abs/1602.02697](http://arxiv.org/abs/1602.02697)
 

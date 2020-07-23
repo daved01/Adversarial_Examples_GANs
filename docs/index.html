@@ -2,17 +2,19 @@
 layout: mainpage
 ---
 
+Did you notice the stray pixel on the right side in the image above? Your convnet would have! And possibly misclassified a red stop light as green which could have severe outcomes.
+<br>
+<br>
+A machine learning model can be mislead by adding a small, imperceptible perturbation to an image. 
+This is known as adversarial examples. 
+Studying this phenomenon is important from a safety point of view. 
+For neural networks in particular it can also offer insights into what features models learn and 
+what the limitations of the learned representations are. Put differently, the existence of 
+adversarial examples shows that vision systems live in a very different world.
 
-The images above depict a stop light detector for an automated vehicle. By adding a small, imperceptible perturbation to an image it is possible to change the output of a neural network. This also works in the physical world. In this hypothetical example the red light is detected as green, which could signal the vehicle to accelerate through the intersection.
-These slightly modified images that mislead neural networks are known as adversarial examples.
-<br>
-<br>
-Studying this phenomenon is not only important from a safety point of view, but also offers insights into
-how deep neural networks learn. The existance of adversarial examples shows the limitations of the learned 
-representations. 
 <br>
 <br>
 On this website we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">review</a> selected references to 
 present the current state of research of that topic.
-To learn more about how they work we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">implement</a> selected attack methods in Jupter notebooks and explain the steps.
+To learn more about how they work we <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">implement</a> selected attack methods in Jupyter notebooks and explain the steps.
 We then compare the effectiveness of these attacks in the results section.
