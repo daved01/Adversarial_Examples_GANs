@@ -5,9 +5,6 @@ title: About
 permalink: /about/
 ---
 
-We are two AI enthusiasts based in Canada and Europe. We have created this website to present our findings on the exciting topics of adversarial examples.
+We are two engineers fascinated by AI based in Canada and Europe. We have created this website to present our findings on the exciting topic of adversarial examples.
 
-Studying this topic does not only raise our awareness of
-
-
-...
+Studying this topic raised our awareness of how differently humans and convnets operate in object classification and beyond. Even though neural nets in computer vision systems already outperform humans in specific tasks, the representations these systems learn seem to be quite different from the world humans live in. 
