@@ -5,6 +5,8 @@ title: References
 permalink: /references/
 ---
 
+Carlini, N., & Wagner, D. (2017). Towards Evaluating the Robustness of Neural Networks. ArXiv:1608.04644 [Cs]. [http://arxiv.org/abs/1608.04644](http://arxiv.org/abs/1608.04644)
+
 Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
 
 Dubey, A., Cammarota, R., & Aysu, A. (2019). MaskedNet: The First Hardware Inference Engine Aiming Power Side-Channel Protection. ArXiv:1910.13063 [Cs]. [http://arxiv.org/abs/1910.13063](http://arxiv.org/abs/1910.13063])
