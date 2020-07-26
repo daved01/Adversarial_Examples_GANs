@@ -13,11 +13,15 @@ Dubey, A., Cammarota, R., & Aysu, A. (2019). MaskedNet: The First Hardware Infer
 
 Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., Prakash, A., Kohno, T., & Song, D. (2018). Robust Physical-World Attacks on Deep Learning Models. ArXiv:1707.08945 [Cs]. [http://arxiv.org/abs/1707.08945](http://arxiv.org/abs/1707.08945)
 
+Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., & Wichmann, F. A. (2020). Shortcut Learning in Deep Neural Networks. ArXiv:2004.07780 [Cs, q-Bio]. [http://arxiv.org/abs/2004.07780](http://arxiv.org/abs/2004.07780)
+
 Goodfellow, I., Papernot, N., Huang, S., Duan, R., Abeel, P., & Clark, J. (2017). Attacking Machine Learning with Adversarial Examples. [https://openai.com/blog/adversarial-example-research/](https://openai.com/blog/adversarial-example-research/)
 
 Goodfellow, I. J., Shlens, J., & Szegedy, C. (2015). Explaining and Harnessing Adversarial Examples. [ArXiv:1412.6572](http://arxiv.org/abs/1412.6572) [Cs, Stat].
 
 He, K., Zhang, X., Ren, S., & Sun, J. (2015). Deep Residual Learning for Image Recognition. ArXiv:1512.03385 [Cs]. [http://arxiv.org/abs/1512.03385](http://arxiv.org/abs/1512.03385)
+
+Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the Knowledge in a Neural Network. ArXiv:1503.02531 [Cs, Stat]. [http://arxiv.org/abs/1503.02531](http://arxiv.org/abs/1503.02531)
 
 Huang, L., Joseph, A. D., Nelson, B., Rubinstein, B. I. P., & Tygar, J. D. (n.d.). Adversarial Machine Learning. 15.
 
@@ -26,6 +30,8 @@ Ilyas, A., Santurkar, S., Tsipras, D., Engstrom, L., Tran, B., & Madry, A. (2019
 Kurakin, A., Goodfellow, I., & Bengio, S. (2017). Adversarial examples in the physical world. [ArXiv:1607.02533](http://arxiv.org/abs/1607.02533) [Cs, Stat].
 
 Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)
+
+Madry, A., Makelov, A., Schmidt, L., Tsipras, D., & Vladu, A. (2017). Towards Deep Learning Models Resistant to Adversarial Attacks. ArXiv:1706.06083 [Cs, Stat]. [http://arxiv.org/abs/1706.06083](http://arxiv.org/abs/1706.06083)
 
 Moosavi-Dezfooli, S.-M., Fawzi, A., & Frossard, P. (2016). DeepFool: A Simple and Accurate Method to Fool Deep Neural Networks. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). [https://doi.org/10.1109/cvpr.2016.282](https://doi.org/10.1109/cvpr.2016.282)
 
@@ -38,6 +44,8 @@ Papernot, N., McDaniel, P., Jha, S., Fredrikson, M., Celik, Z. B., & Swami, A. (
 Papernot, N., McDaniel, P., & Goodfellow, I. (2016). Transferability in Machine Learning: From Phenomena to Black-Box Attacks using Adversarial Samples. ArXiv:1605.07277 [Cs]. [http://arxiv.org/abs/1605.07277](http://arxiv.org/abs/1605.07277)
 
 Qin, Y., Carlini, N., Goodfellow, I., Cottrell, G., & Raffel, C. (n.d.). Imperceptible, Robust, and Targeted Adversarial Examples for Automatic Speech Recognition. 12.
+
+Rajpurkar, P., Irvin, J., Zhu, K., Yang, B., Mehta, H., Duan, T., Ding, D., Bagul, A., Langlotz, C., Shpanskaya, K., Lungren, M. P., & Ng, A. Y. (2017). CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning. ArXiv:1711.05225 [Cs, Stat]. [http://arxiv.org/abs/1711.05225](http://arxiv.org/abs/1711.05225)
 
 Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z., Karpathy, A., Khosla, A., Bernstein, M., Berg, A. C., & Fei-Fei, L. (2015). ImageNet Large Scale Visual Recognition Challenge. International Journal of Computer Vision (IJCV), 115(3), 211–252. [https://doi.org/10.1007/s11263-015-0816-y](https://doi.org/10.1007/s11263-015-0816-y)
 

@@ -50,17 +50,16 @@ The methods above modify all pixels to increase the loss. [[13]](#cite13) propos
 
 
 ## How to defend against them
-As of this writing the best defence against adversarial examples is to include them in the training data of the model (adversarial training). [[15]](#cite15) created a library to support this by providing the common attack methods. Another approach is using another model which is specialized in detecting adversaries [[16]](#cite16).
+As of this writing the best defense against adversarial examples is to include them in the training data of the model (adversarial training [[6]](#cite6)). This allows learning robust decision boundaries, which works better for models with large capacity [[15]](#cite15). Papernot et al. [[16]](#cite16) created the Cleverhans library to support adversarial training by providing the common attack methods. A second approach is using another model which is specialized in detecting adversaries [[17]](#cite17). A third approach is defensive distillation [[18]](#cite18). However, Carlini et al. have shown that this cannot defend against stronger attacks [[19]](#cite19).
 
 
 ## Beyond classification
-Adversarial examples also exist for semantic segmentation, object detection or pose estimation tasks. Two common algorithms to generate them are *Dense Adversary Generation* [[17]](#cite17) and *Houdini* [[18]](#cite18). Xiao et al. [[19]](#cite19) analyze these and find that for semantic segmentation adversaries do not transfer between models. Moreover, with spatial consistency check they introduce a promising detection mechanism for the segmentation task.
-
+Adversarial examples also exist for semantic segmentation, object detection or pose estimation tasks. Two common algorithms to generate them are *Dense Adversary Generation* [[20]](#cite20) and *Houdini* [[21]](#cite21). Xiao et al. [[22]](#cite22) analyze these and find that for semantic segmentation adversaries do not transfer between models. Moreover, with spatial consistency check they introduce a promising detection mechanism for the segmentation task.
 
 __________________
 
 <a name="cite1"></a>
-## References
+# References
 
 <a name="cite2"></a>
 [1] &emsp; Qin, Y., Carlini, N., Goodfellow, I., Cottrell, G., & Raffel, C. (n.d.). Imperceptible, Robust, and Targeted Adversarial Examples for Automatic Speech Recognition. 12.
@@ -105,16 +104,25 @@ __________________
 [14] &emsp; Papernot, N., McDaniel, P., Jha, S., Fredrikson, M., Celik, Z. B., & Swami, A. (2015). The Limitations of Deep Learning in Adversarial Settings. ArXiv:1511.07528 [Cs, Stat]. [http://arxiv.org/abs/1511.07528](http://arxiv.org/abs/1511.07528])
 
 <a name="cite16"></a>
-[15] &emsp; Papernot, N., Faghri, F., Carlini, N., Goodfellow, I., Feinman, R., Kurakin, A., Xie, C., Sharma, Y., Brown, T., Roy, A., Matyasko, A., Behzadan, V., Hambardzumyan, K., Zhang, Z., Juang, Y.-L., Li, Z., Sheatsley, R., Garg, A., Uesato, J., … McDaniel, P. (2018). Technical Report on the CleverHans v2.1.0 Adversarial Examples Library. ArXiv:1610.00768 [Cs, Stat]. [http://arxiv.org/abs/1610.00768](http://arxiv.org/abs/1610.00768)
+[15] &emsp; Madry, A., Makelov, A., Schmidt, L., Tsipras, D., & Vladu, A. (2017). Towards Deep Learning Models Resistant to Adversarial Attacks. ArXiv:1706.06083 [Cs, Stat]. [http://arxiv.org/abs/1706.06083](http://arxiv.org/abs/1706.06083)
 
 <a name="cite17"></a>
-[16] &emsp; Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)
+[16] &emsp; Papernot, N., Faghri, F., Carlini, N., Goodfellow, I., Feinman, R., Kurakin, A., Xie, C., Sharma, Y., Brown, T., Roy, A., Matyasko, A., Behzadan, V., Hambardzumyan, K., Zhang, Z., Juang, Y.-L., Li, Z., Sheatsley, R., Garg, A., Uesato, J., … McDaniel, P. (2018). Technical Report on the CleverHans v2.1.0 Adversarial Examples Library. ArXiv:1610.00768 [Cs, Stat]. [http://arxiv.org/abs/1610.00768](http://arxiv.org/abs/1610.00768)
 
 <a name="cite18"></a>
-[17] &emsp; Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
+[17] &emsp; Lu, J., Issaranon, T., & Forsyth, D. (2017). SafetyNet: Detecting and Rejecting Adversarial Examples Robustly. ArXiv:1704.00103 [Cs]. [http://arxiv.org/abs/1704.00103](http://arxiv.org/abs/1704.00103)
 
 <a name="cite19"></a>
-[18] &emsp; Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
+[18] &emsp; Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the Knowledge in a Neural Network. ArXiv:1503.02531 [Cs, Stat]. [http://arxiv.org/abs/1503.02531](http://arxiv.org/abs/1503.02531)
 
 <a name="cite20"></a>
-[19] &emsp; Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
+[19] &emsp; Carlini, N., & Wagner, D. (2017). Towards Evaluating the Robustness of Neural Networks. ArXiv:1608.04644 [Cs]. http://arxiv.org/abs/1608.04644
+
+<a name="cite21"></a>
+[20] &emsp; Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
+
+<a name="cite22"></a>
+[21] &emsp; Cisse, M., Adi, Y., Neverova, N., & Keshet, J. (2017). Houdini: Fooling Deep Structured Prediction Models. ArXiv:1707.05373 [Cs, Stat]. [http://arxiv.org/abs/1707.05373](http://arxiv.org/abs/1707.05373)
+
+<a name="cite213"></a>
+[22] &emsp; Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
