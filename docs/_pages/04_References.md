@@ -59,4 +59,6 @@ Tsipras, D., Santurkar, S., Engstrom, L., Turner, A., & Ma, A. (2019). Robustnes
 
 Xiao, C., Deng, R., Li, B., Yu, F., Liu, M., & Song, D. (2018). Characterizing Adversarial Examples Based on Spatial Consistency Information for Semantic Segmentation. ArXiv:1810.05162 [Cs]. [http://arxiv.org/abs/1810.05162](http://arxiv.org/abs/1810.05162)
 
+Xiao, C., Li, B., Zhu, J.-Y., He, W., Liu, M., & Song, D. (2019). Generating Adversarial Examples with Adversarial Networks. ArXiv:1801.02610 [Cs, Stat]. [http://arxiv.org/abs/1801.02610](http://arxiv.org/abs/1801.02610)
+
 Xie, C., Wang, J., Zhang, Z., Zhou, Y., Xie, L., & Yuille, A. (2017). Adversarial Examples for Semantic Segmentation and Object Detection. ArXiv:1703.08603 [Cs]. [http://arxiv.org/abs/1703.08603](http://arxiv.org/abs/1703.08603)
