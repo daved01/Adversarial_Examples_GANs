@@ -90,7 +90,6 @@ body {
  
   
   /* Aside */
-  
   aside {
     position: fixed;
     top: 0;
@@ -291,7 +290,6 @@ body {
       }
 
     }
-
     p.left 
     {
       text-align: left;
@@ -362,193 +360,6 @@ body {
       margin-left: 40px;
       margin-right: 40px;
     }  
-    aside {
-      position: fixed;
-      background: $navbar-background;
-      display: grid;
-      grid-auto-rows: 100px;
-      grid-gap: 2rem;
-      width: 100%;
-      border-bottom: 1px solid lighten($light, 30%);
-      box-shadow: 0px 1px 1px RGBA(4, 25, 54, 0.1);
-      nav {
-        float: none;
-        max-width: 600px;
-        margin: 0 auto;  
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          }
-          li.right {
-            float: left;
-            position: relative;
-            top: 0px;
-            left: 0px;
-            background: $navbar-background;
-            margin-left: 150px;
-            a {
-              text-align: center;
-              text-decoration: none;
-              font-weight: bold;
-              display: block;
-              padding: 5px;
-              padding-left: 10px;
-              font-family: $navbar-font-style;
-              font-size: 0.9em;
-              line-height: 40px;
-              margin-bottom: -1px;
-              box-shadow: 0;
-              color: $navbar-font-color !important;
-              &:hover,
-              &:active {
-                text-decoration: none;
-                color: $link-hover-color !important;
-              }
-            }
-        }
-        li.left {
-          float: left;
-          position: fixed;
-          width: 140px;
-          background: $navbar-background;
-          a {
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            padding: 2px;
-            font-family: $navbar-font-style;
-            font-size: 1.2em;
-            line-height: 40px;
-            margin-left: 10px;
-            margin-top: 5px;
-            margin-bottom: -1px;
-            box-shadow: 0;
-            color: $navbar-font-color!important;
-            &:hover,
-            &:active {
-              text-decoration: none;
-              color: $link-hover-color !important;
-            }
-          }
-      }
-        &:after {
-          content: '';
-          display: table;
-          clear: both;
-        }
-      }
-    /* Navbar container */
-    .navbar {
-      overflow: hidden;
-      background-color: #333;
-      font-family: $navbar-font-style;
-    }
-    
-    /* Links inside the navbar */
-    .navbar a {
-      float: left;
-      font-family: $navbar-font-style;
-      font-size: 0.9em;
-      color: $navbar-font-color;
-      text-align: center;
-      padding: 5px 5px;
-      text-decoration: none;
-    }
-    
-    /* The dropdown container */
-    .dropdown {
-      float: left;
-      overflow: hidden;
-    }
-    
-    /* Dropdown button */
-    .dropdown .dropbtn { 
-      border: none;
-      outline: none;
-      text-decoration: none;
-      color: #ffffff;
-      font-family: $navbar-font-style;
-      font-size: 0.9em;
-      font-weight: bold;
-      display: block;
-      padding: 5px;
-      position: relative;
-      line-height: 40px;
-      margin-bottom: -1px;
-      background-color: inherit;   
-      margin: 0; /* Important for vertical align on mobile phones */
-    }
-    
-    /* Add a red colour to navbar links on hover */
-    .navbar a:hover, .dropdown:hover .dropbtn {
-      color:$link-hover-color !important;
-    }
-    
-    /* Dropdown content (hidden by default) */
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      left: 280px;
-      background-color: #f9f9f9;
-      min-width: 80px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-    
-    /* Links inside the dropdown */
-    .dropdown-content a {
-      float: none;
-      color: #898989;
-      padding: 6px 8px;
-      font-size: 0.9em;
-      text-decoration: none;
-      font-weight: bold;
-      display: block;
-      text-align: left;
-    }
-    
-    /* Add a grey background color to dropdown links on hover */
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-    
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    footer {  
-      text-align: center;
-      background-color: $footer-background;
-      background-color: #218d43;
-      padding: 1px 15px;
-      margin: 25px 0 0;
-      height: 9vh;
-      color: $footer-font-color;
-      a,
-      a:visited {
-        color: $footer-link;
-        text-decoration: underline;
-        font-weight: bold;
-        &:hover
-         {
-            color: $link-hover-color !important;
-            text-decoration: underline;
-        }
-      }
-      p.left 
-      {
-        text-align: left;
-        font-size: large;
-      }
-      p.right 
-      {
-        text-align: center;
-        font-size: small;
-      }
-    }
-    }
   img.welcome {
     width: 80%;
     height:auto;
@@ -558,5 +369,37 @@ body {
     margin-top: 10%;
     margin-bottom: 10%;
   }
+  footer {  
+    text-align: center;
+    background-color: $footer-background;
+    padding: 1px 15px;
+    margin: 50px 0 0;
+    height: 11vh;
+    font-size: small;
+    color: $footer-font-color;
+    a,
+    a:visited {
+      color: $footer-link;
+      text-decoration: underline;
+      font-weight: bold;
+      &:hover
+       {
+          color: $link-hover-color !important;
+          text-decoration: underline;
+      }
+
+    }
+    p.left 
+    {
+      text-align: left;
+    }
+    p.right 
+    {
+      text-align: center;
+      font-size: small;
+    }
+  }
+
+
 }
   
