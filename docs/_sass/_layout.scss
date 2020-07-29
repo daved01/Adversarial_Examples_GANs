@@ -254,7 +254,7 @@ img.plot {
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 950px) {
   h1 {
     font-size: 2.0em;
     margin-top: 50px;
@@ -393,18 +393,14 @@ footer {
     font-weight: normal;
   }
 
-  img.plot {
-    width:100%;
-    margin-left: 0px;
-    
-  }
+
 
 
 
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 950px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive a.icon {
     position: absolute;
