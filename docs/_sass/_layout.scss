@@ -174,11 +174,14 @@ ul.navbar ul.navbar ul.navbar {
 
 /* Dropdown menu */
 li.navbar:hover > ul.navbar {
-  display: block;
   position: absolute;
   background-color: #f9f9f9;
   margin-top: 55px;
   margin-left: -200px;
+  display: block;
+  float: none;
+  list-style: none;
+  text-align: left;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 

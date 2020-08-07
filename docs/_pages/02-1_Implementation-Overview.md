@@ -2,7 +2,7 @@
 
 layout: page
 title: Overview
-permalink: /implementation/
+
 ---
 
 The implementation is structured by the attack method. Each is implemented in a separate notebook. The first notebook `00_Helper-Functions.ipynb` contains functions that are required by multiple methods. Copies of these functions are available as modules in `modules/helper.py` and `modules/dataset.py`. The PyTorch library is used for the implementations.
