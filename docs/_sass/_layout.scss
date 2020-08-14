@@ -35,6 +35,7 @@ h4 {
   padding-top: 0px;
 }
 
+/* Links */
 a,
 a:visited {
   color: $link-color;
@@ -45,6 +46,19 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Format body */
+main {
+  padding: 0px 15px;
+  max-width: $content-width;
+  margin: 0 auto;
+}
+time {
+  color: #898989;
+}
+.container {
+  max-width: 8000px;
+  margin: 0 auto;
+}
 
 /* Welcome page */
 h5 {
@@ -54,6 +68,7 @@ h5 {
   text-align:center;
   margin-top: 0px;
   margin-bottom: 4%;
+  text-decoration: none;
 }
 h6 {
   color:white;
@@ -64,6 +79,8 @@ h6 {
   margin-bottom: 0px;
   padding-top: 0px;
 }
+
+/* Weloome page */
 header {
   background: $welcome-page-element;
   padding-top: 40px;
@@ -88,28 +105,61 @@ header {
     margin-bottom: 5%;
   }
 
-main {
-  padding: 0px 15px;
-  max-width: $content-width;
-  margin: 0 auto;
-}
-time {
-  color: #898989;
-}
-.container {
-  max-width: 8000px;
-  margin: 0 auto;
-}
+  /* Footer */
+  footer {  
+    text-align: center;
+    background-color: $footer-background;
+    padding: 1px 15px;
+    margin: 50px 0 0;
+    height: 11vh;
+    font-size: medium;
+    color: $footer-font-color;
+    a,
+    a:visited {
+      color: $footer-link;
+      text-decoration: underline;
+      font-weight: bold;
+      &:hover
+       {
+          color: $link-hover-color !important;
+          text-decoration: underline;
+      }
+  
+    }
+    p.left 
+    {
+      text-align: left;
+    }
+    p.right 
+    {
+      text-align: center;
+      font-size: small;
+    }
+  }
 
+  /* Figure */
+  figure
+  {
+    font-size: small;
+    color: $figure-font-color;
+    max-width: $content-width;
+  }
+  img.plot {
+    width:100%;
+  }
+
+
+
+/* Navigation bar with dropdown: */
 /* Add a black background color to the top navigation */
 .topnav {
+  overflow: hidden;
   background-color: $navbar-background;
-  width: 100%;
-  height: 60px;
   border-bottom: 1px solid lighten($light, 30%);
   box-shadow: 0px 1px 1px RGBA(4, 25, 54, 0.1);
-}
 
+
+}
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
@@ -119,126 +169,71 @@ time {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 19px;
+  font-size: $navbar-font-size;
   font-family: $navbar-font-style;
   font-weight: bold;
   position: relative;
 }
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: $navbar-background;
-  color:$link-hover-color !important;
-}
-
 /* Add an active class to highlight the current page */
-.topnav a.active {
+.active {
   background-color: $navbar-background;
-  color:$link-hover-color !important; 
+  color: $link-hover-color;
 }
-
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
   display: none;
 }
-
-ul.navbar {
-  padding: 0;
-  margin: 0;
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: $navbar-font-size; 
+  color: $navbar-font-color;
+  padding: 14px 16px;
+  text-decoration: none;
   background-color: $navbar-background;
-}
-li.navbar {
-  display: inline;
-  position: relative;
-  background-color: $navbar-background;
-}
-ul.navbar ul.navbar {
-  position: absolute;
-  display: none;
-  background-color: $navbar-background; 
-}
-
-
-
-/* Dropdown menu */
-li.navbar:hover > ul.navbar {
-  position: absolute;
-  background-color: #f9f9f9;
-  margin-top: 55px;
-  margin-left: -200px;
-  display: block;
-  float: none;
-  list-style: none;
-  text-align: left;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-a.dropdown1 {
-  display: inline;
-  position: relative;
-  background-color: #f9f9f9;
-  color: #312331;
-  min-width: 200px;
-  text-align: left;
-  padding: 15px;
-}
-li.dropdown1 {
-  display: inline;
-  position: relative;
-  background-color: #f9f9f9;
-}
-
-a.mobile {
-  display: none;
-}
-
-
-footer {  
   text-align: center;
-  background-color: $footer-background;
-  padding: 1px 15px;
-  margin: 50px 0 0;
-  height: 11vh;
-  font-size: medium;
-  color: $footer-font-color;
-  a,
-  a:visited {
-    color: $footer-link;
-    text-decoration: underline;
-    font-weight: bold;
-    &:hover
-     {
-        color: $link-hover-color !important;
-        text-decoration: underline;
-    }
-
-  }
-  p.left 
-  {
-    text-align: left;
-  }
-  p.right 
-  {
-    text-align: center;
-    font-size: small;
-  }
+  font-family: $navbar-font-style;
+  font-weight: bold;
+  border: none;
 }
-figure
-{
-  font-size: small;
-  color: $figure-font-color;
-  max-width: $content-width;
-
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
-img.plot {
-  width:100%;
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color:  white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  color: $link-hover-color;
+}
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  color: $link-hover-color;
+  background: $navbar-background;
+}
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 
-
-
-
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 950px)  {
   h1 {
     font-size: 2.0em;
     margin-top: 50px;
@@ -272,71 +267,79 @@ a:hover {
   color: $link-hover-color;
   text-decoration: underline;
 }
-  
 
-  /* Welcome page */
-  h5 {
-    color:white;
-    font-size:50px;
-    padding-top: 0px;
-    text-align:center;
-    margin-top: 0px;
-    margin-bottom: 1%;
-  }
-  h6 {
-    color:white;
-    font-size:15px;
-    padding-top: 0px;
-    text-align:center;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 20px;
-    margin-right: 20px;
-  }  
-  img.welcome {
-  width: 70%;
-  height:auto;
-  display:block;
-  margin-left:auto;
-  margin-right: auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  }
+/* Welcome page */
+h5 {
+  color:white;
+  font-size:50px;
+  padding-top: 0px;
+  text-align:center;
+  margin-top: 0px;
+  margin-bottom: 1%;
+}
+h6 {
+  color:white;
+  font-size:15px;
+  padding-top: 0px;
+  text-align:center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+}  
+img.welcome {
+width: 70%;
+height:auto;
+display:block;
+margin-left:auto;
+margin-right: auto;
+margin-top: 5%;
+margin-bottom: 5%;
+}
 
 
 footer {  
-  text-align: center;
-  background-color: $footer-background;
-  padding: 5px 25px;
-  margin: 50px 0 0;
-  height: 100px;
-  font-size: small;
-  color: $footer-font-color;
-  a,
-  a:visited {
-    color: $footer-link;
-    text-decoration: underline;
-    font-weight: bold;
-    &:hover
-     {
-        color: $link-hover-color !important;
-        text-decoration: underline;
-    }
+text-align: center;
+background-color: $footer-background;
+padding: 5px 25px;
+margin: 50px 0 0;
+height: 100px;
+font-size: small;
+color: $footer-font-color;
+a,
+a:visited {
+  color: $footer-link;
+  text-decoration: underline;
+  font-weight: bold;
+  &:hover
+   {
+      color: $link-hover-color !important;
+      text-decoration: underline;
+  }
 
-  }
-  p.left 
-  {
-    text-align: center;
-    font-size: 1.1em;
-  }
-  p.right 
-  {
-    text-align: center;
-    font-size: small;
-  }
+}
+p.left 
+{
+  text-align: center;
+  font-size: 1.1em;
+}
+p.right 
+{
+  text-align: center;
+  font-size: small;
+}
 }
 
-/* Navbar */
+
+  /* Navigation bar */
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   display: block;
@@ -345,44 +348,26 @@ footer {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 19px;
+  font-size: $navbar-font-size;
   font-family: $navbar-font-style;
   font-weight: bold;
   position: relative;
 }
-
-
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: $navbar-background;
-  color:$link-hover-color !important;
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  color: $link-hover-color;
 }
-
-/* Add an active class to highlight the current page */
-.topnav a.active {
-  background-color: $navbar-background;
-  color:$link-hover-color !important; 
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  color: $link-hover-color;
+  background: $navbar-background;
 }
-
-.topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  /*ul a:not(.left) {display: none;} */
-  ul a.navbar {display: none;}
-
-  .topnav a.mobile {
-    margin-left: 40px;
-    font-weight: normal;
-  }
-
 
 
 
 
 }
+
 
 
 @media screen and (max-width: 950px) {
@@ -392,15 +377,17 @@ footer {
     right: 0;
     top: 0;
   }
-
   .topnav.responsive a {
     float: none;
     display: block;
     text-align: left;
-    background-color: $navbar-background;
-   
-
   }
-
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
 
 }
