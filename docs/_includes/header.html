@@ -3,57 +3,40 @@
 
 
 <div class="topnav" id="myTopnav">
-<ul class="navbar">
-	<li class="navbar">
-		<a class="left" href="{{ site.baseurl | prepend: site.url | relative_url  }}/">{{ site.title }}</a>
-	</li>
-	<li class="navbar">
-		<a class="navbar" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">Background</a>
-	</li>
-<li class="navbar">
-<a class="navbar" href="">Implementation</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">Overview</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-2_Implementation-FGSM.md %}">FGSM</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-3_Implementation-BIM.md %}">BIM</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-5_Implementation-DeepFool.md %}">DeepFool</a>
-<ul class="navbar">
-<a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">Overview</a>
-					  <li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-2_Implementation-FGSM.md %}">FGSM</a></li>
-						<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-3_Implementation-BIM.md %}">BIM</a></li>
-							<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-4_Implementation-ILLM.md %}">ILLM</a></li>
-								<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-5_Implementation-DeepFool.md %}">DeepFool</a></li>
-</ul>
+	<a class="active" href="{{ site.baseurl | prepend: site.url | relative_url  }}/">{{ site.title }}</a>
+	<a class="navbar" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/01_State-of-the-art.md %}">Background</a>
 
-</li>
-<li class="navbar">
-<a class="navbar" href="">Results</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-1-Results_Data_Exploration.md %}">Data Exploration</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-2_Results_Attacks.md %}">Attacks</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-3_Results_Perceptibility.md %}">Perceptibility</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-4_Results_Conclusions.md %}">Conclusions</a>
-<a class="mobile" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-5_Results_Appendix.md %}">Appendix</a>
+	<div class="dropdown">
+		<button class="dropbtn">Implementation 
+		  <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-content">
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-1_Implementation-Overview.md %}">Overview</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-2_Implementation-FGSM.md %}">FGSM</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-3_Implementation-BIM.md %}">BIM</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/02-5_Implementation-DeepFool.md %}">DeepFool</a>
+		</div>
+	  </div> 
 
+	  <div class="dropdown">
+		<button class="dropbtn">Results 
+		  <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-content">
+		  <a ref="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-1-Results_Data_Exploration.md %}">Data Exploration</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-2_Results_Attacks.md %}">Attacks</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-3_Results_Perceptibility.md %}">Perceptibility</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-4_Results_Conclusions.md %}">Conclusions</a>
+		  <a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-5_Results_Appendix.md %}">Appendix</a>
+		</div>
+	  </div> 
 
-<ul class="navbar">	
-<li class="dropdown1"></li><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-1-Results_Data_Exploration.md %}">Data Exploration</a></li>
-	<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-2_Results_Attacks.md %}">Attacks</a></li>
-		<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-3_Results_Perceptibility.md %}">Perceptibility</a></li>
-			<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-4_Results_Conclusions.md %}">Conclusions</a></li>
-				<li class="dropdown1"><a class="dropdown1" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/03-5_Results_Appendix.md %}">Appendix</a></li>
-			</ul>
-		</li>
-		<li class="navbar">
-				  <a class="navbar" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/04_References.md %}">References</a>
-				  </li>
-				  <li class="navbar">
-				  <a class="navbar" href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/05_about.md %}">About</a>
-		</li>		  
-		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-			<i class="fa fa-bars"></i>
-		  </a>
-</ul>
+	<a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/04_References.md %}">References</a>
+	<a href="{{ site.baseurl | prepend: site.url | relative_url }}{% link _pages/05_about.md %}">About</a>
 
+	<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
+
 
 <script>
 	function myFunction() {
@@ -63,7 +46,8 @@
 	  } else {
 		x.className = "topnav";
 	  }
-	}
+	  
+	}	
+</script>
 
-	</script>
 
